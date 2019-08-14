@@ -1,0 +1,19 @@
+@main-color: blue;
+@second-color: red;
+
+// Breakpoints
+@bp1: 420px;
+@bp2: 720px;
+@bp3: 1080px;
+.nav {
+    background-color: @main-color;
+    @media only screen and (max-width: @bp1){
+        padding: 10px 10px;
+    }
+    @media only screen and (min-width: @bp1) and (max-width: @bp2){
+        padding: 10px 
+    }
+    @media only screen and (min-width: @bp2){
+        padding: 20px 30px
+    }
+}

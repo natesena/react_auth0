@@ -1,0 +1,18 @@
+.nav {
+  background-color: blue;
+}
+@media only screen and (max-width: 420px) {
+  .nav {
+    padding: 10px 10px;
+  }
+}
+@media only screen and (min-width: 420px) and (max-width: 720px) {
+  .nav {
+    padding: 10px;
+  }
+}
+@media only screen and (min-width: 720px) {
+  .nav {
+    padding: 20px 30px;
+  }
+}
