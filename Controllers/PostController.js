@@ -15,7 +15,7 @@ module.exports = {
     },
     create: (req,res)=>{
         Post.create(req.body, (err,newpost)=>{
-            console.log('Post Post Create Route Hit')
+            console.log('POST: Post Create Route Hit')
             console.log("req.body: ", req.body)
             if(err){
                 console.log("err: ", err)
@@ -33,8 +33,10 @@ module.exports = {
         })
     },
     delete: (req,res)=>{
+        console.log('\n POST DELETE ROUTE HIT')
         Post.findByIdAndRemove(req.params.id, (err,Post)=>{
             if(err){
+                console.log('\n  failure to delete post')
                 res.send({message: 'failure', err: err.code})
             }
             res.send({ message: 'success', Post})

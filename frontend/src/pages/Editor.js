@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
+import axios from 'axios';
+import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -16,10 +17,23 @@ class ControlledEditor extends Component {
         editorState,
       });
     };
+
+    savePost: Function = () => {
+      let contentState = this.state.editorState.getCurrentContent()
+      let persistableData = JSON.stringify(convertToRaw(contentState))
+      axios.post('/api/Posts', persistableData)
+      .then((res)=>{
+        console.log(res)
+        if(res.data.newpost){
+          console.log('successfully saved to DB')
+        }
+      })
+    }
   
     render() {
       const { editorState } = this.state;
       return (
+        <div>
           <div className="editor-container">
                 <Editor
                 // toolbarClassName="toolbar-class"
@@ -29,6 +43,10 @@ class ControlledEditor extends Component {
                 onEditorStateChange={this.onEditorStateChange}
                 />
           </div>
+          <div>
+            <button className='editor-action-button' onClick={this.savePost()}>Save</button>
+          </div>
+        </div>
       )
     }
   }

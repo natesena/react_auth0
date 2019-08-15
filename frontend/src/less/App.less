@@ -5,8 +5,18 @@
 @phone: 420px;
 @tablet: 720px;
 @desktop: 1080px;
+
+.App{
+    height: 100vh;
+    position: relative;
+}
 .nav {
     background-color: @main-color;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    box-sizing: border-box;
     @media only screen and (max-width: @phone){
         padding: 10px 10px;
     }
@@ -18,6 +28,9 @@
     }
 }
 .body{
+    position: absolute;
+    top: 0;
+    z-index: 0;
     box-sizing: border-box;
     @media only screen and (max-width: @phone){
         padding: 10px
@@ -26,16 +39,32 @@
         padding: 10px 
     }
     @media only screen and (min-width: @tablet){
+        margin-top: 50px;
         padding: 20px 30px
     }
 }
 .editor-container{
-    border: 1px solid black;
     box-sizing: border-box;
     padding: 10px;
-    width: 100%
+    width: 100%;
+    height: 100%
 }
-.editor-button{
+.editor-action-button{
+    cursor: pointer;
+    background-color: @main-color;
+    padding: 3px 5px;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid white;
+    float: right
+}
+
+.home-button{
+    float: left;
+    text-decoration: none;
+    color: white
+}
+.nav-button{
     text-decoration: none;
     float: right;
     color: white;

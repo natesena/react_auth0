@@ -1,5 +1,14 @@
+.App {
+  height: 100vh;
+  position: relative;
+}
 .nav {
   background-color: blue;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  box-sizing: border-box;
 }
 @media only screen and (max-width: 420px) {
   .nav {
@@ -17,6 +26,9 @@
   }
 }
 .body {
+  position: absolute;
+  top: 0;
+  z-index: 0;
   box-sizing: border-box;
 }
 @media only screen and (max-width: 420px) {
@@ -31,16 +43,31 @@
 }
 @media only screen and (min-width: 720px) {
   .body {
+    margin-top: 50px;
     padding: 20px 30px;
   }
 }
 .editor-container {
-  border: 1px solid black;
   box-sizing: border-box;
   padding: 10px;
   width: 100%;
+  height: 100%;
 }
-.editor-button {
+.editor-action-button {
+  cursor: pointer;
+  background-color: blue;
+  padding: 3px 5px;
+  color: white;
+  border-radius: 3px;
+  border: 1px solid white;
+  float: right;
+}
+.home-button {
+  float: left;
+  text-decoration: none;
+  color: white;
+}
+.nav-button {
   text-decoration: none;
   float: right;
   color: white;
@@ -48,19 +75,19 @@
   border: 1px solid white;
 }
 @media only screen and (max-width: 420px) {
-  .editor-button {
+  .nav-button {
     padding: 2px 3px;
     border-radius: 2px;
   }
 }
 @media only screen and (min-width: 420px) and (max-width: 720px) {
-  .editor-button {
+  .nav-button {
     padding: 3px 5px;
     border-radius: 3px;
   }
 }
 @media only screen and (min-width: 720px) {
-  .editor-button {
+  .nav-button {
     margin: 0 5px;
     padding: 3px 5px;
     border-radius: 5px;

@@ -12,7 +12,7 @@ function Navbar(props){
 
     return (
       <nav className="nav" style={{overflow: 'hidden'}}>
-      <Link className="" to="/" style={{float: 'left', textDecoration: 'none'}}>NateSena</Link>
+      <Link to="/" className='home-button'>NateSena</Link>
       <div style={{float: 'right'}}>
         {
           !auth0Client.isAuthenticated() &&
@@ -26,7 +26,7 @@ function Navbar(props){
           </div>
         }
       </div>
-      <Link to='/editor' className='editor-button'>Editor</Link>
+      <Link to='/editor' className='nav-button'>Editor</Link>
       </nav>
     )
 }
