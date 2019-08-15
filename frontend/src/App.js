@@ -1,9 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './css/App.css';
 import {Route} from 'react-router-dom'
 
-import Restricted from './pages/Restricted.js'
 import Base from './pages/Base.js'
 import Editor from './pages/Editor.js'
 

@@ -1,8 +1,9 @@
 import React from 'react'
 
+//Posts Render Differently based on whether the user is viewing a single post or multiple posts
 function Post(){
-    return(
-        <div>Yo</div>
+    return (
+        <p>Yo</p>
     )
 }
 

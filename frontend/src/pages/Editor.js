@@ -22,7 +22,7 @@ class ControlledEditor extends Component {
       return (
           <div className="editor-container">
                 <Editor
-                toolbarClassName="toolbar-class"
+                // toolbarClassName="toolbar-class"
                 editorState={editorState}
                 wrapperClassName="demo-wrapper"
                 editorClassName="demo-editor"
