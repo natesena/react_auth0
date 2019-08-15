@@ -16,9 +16,53 @@
     padding: 20px 30px;
   }
 }
+.body {
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 420px) {
+  .body {
+    padding: 10px;
+  }
+}
+@media only screen and (min-width: 420px) and (max-width: 720px) {
+  .body {
+    padding: 10px;
+  }
+}
+@media only screen and (min-width: 720px) {
+  .body {
+    padding: 20px 30px;
+  }
+}
 .editor-container {
   border: 1px solid black;
   box-sizing: border-box;
   padding: 10px;
   width: 100%;
+}
+.editor-button {
+  text-decoration: none;
+  float: right;
+  color: white;
+  background: transparent;
+  border: 1px solid white;
+}
+@media only screen and (max-width: 420px) {
+  .editor-button {
+    padding: 2px 3px;
+    border-radius: 2px;
+  }
+}
+@media only screen and (min-width: 420px) and (max-width: 720px) {
+  .editor-button {
+    padding: 3px 5px;
+    border-radius: 3px;
+  }
+}
+@media only screen and (min-width: 720px) {
+  .editor-button {
+    margin: 0 5px;
+    padding: 3px 5px;
+    border-radius: 5px;
+  }
 }

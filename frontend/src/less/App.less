@@ -2,18 +2,30 @@
 @second-color: red;
 
 // Breakpoints
-@bp1: 420px;
-@bp2: 720px;
-@bp3: 1080px;
+@phone: 420px;
+@tablet: 720px;
+@desktop: 1080px;
 .nav {
     background-color: @main-color;
-    @media only screen and (max-width: @bp1){
+    @media only screen and (max-width: @phone){
         padding: 10px 10px;
     }
-    @media only screen and (min-width: @bp1) and (max-width: @bp2){
+    @media only screen and (min-width: @phone) and (max-width: @tablet){
         padding: 10px 
     }
-    @media only screen and (min-width: @bp2){
+    @media only screen and (min-width: @tablet){
+        padding: 20px 30px
+    }
+}
+.body{
+    box-sizing: border-box;
+    @media only screen and (max-width: @phone){
+        padding: 10px
+    }
+    @media only screen and (min-width: @phone) and (max-width: @tablet){
+        padding: 10px 
+    }
+    @media only screen and (min-width: @tablet){
         padding: 20px 30px
     }
 }
@@ -22,5 +34,25 @@
     box-sizing: border-box;
     padding: 10px;
     width: 100%
+}
+.editor-button{
+    text-decoration: none;
+    float: right;
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    @media only screen and (max-width: @phone){
+        padding: 2px 3px;
+        border-radius: 2px
+    }
+    @media only screen and (min-width: @phone) and (max-width: @tablet){
+        padding: 3px 5px;
+        border-radius: 3px
+    }
+    @media only screen and (min-width: @tablet){
+        margin: 0 5px;
+        padding: 3px 5px;
+        border-radius: 5px
+    }
 }
 

@@ -1,20 +1,35 @@
 import React from 'react'
 import axios from 'axios'
+import Post from '../components/Post.js'
 
 class Base extends React.Component{
     state = {
         posts: []
     }
     componentDidMount(){
-        console.log("Base Mounted")
         axios.get('/api/Posts')
         .then(res =>{
-            console.log(`res: ${res}`)
+            console.log(res.data.Posts)
+            if(res.data.Posts){
+                this.setState({
+                    posts:[...res.data.Posts]
+                }, ()=>{
+                    console.log(this.state.posts)
+                })
+            }
         })
     }
     render(){
         return(
-            <h1>This is the base page. Nothing really here.</h1>
+            <div className="body">
+            {
+                this.state.posts.length >= 1
+                ?(this.state.posts.map((post, index) =>
+                    <p key={index}>Dis a post</p>
+                ))
+                :<p>No Posts Yet</p>
+            }
+            </div>
         )
     }
 }

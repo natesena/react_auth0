@@ -26,6 +26,7 @@ function Navbar(props){
           </div>
         }
       </div>
+      <Link to='/editor' className='editor-button'>Editor</Link>
       </nav>
     )
 }
