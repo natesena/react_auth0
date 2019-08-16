@@ -3,13 +3,14 @@ import './css/App.css';
 import './css/WYSIWYG.css'
 import {Route} from 'react-router-dom'
 
+import Welcome from './pages/Welcome.js'
 import Base from './pages/Base.js'
 import Editor from './pages/Editor.js'
 import ShowPost from './pages/ShowPost.js'
 
 import Callback from './components/Callback.js'
 import Navbar from './components/Navbar.js'
-// import Post from './components/Post.js'
+
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
       <Navbar/>
       <div className="body">
       {/* Here is where we want to use <Route> and <Switches> */}
-        <Route exact path="/"  component={Base} />
+        <Route exact path="/"  component={Welcome} />
+        <Route exact path="/posts"  component={Base} />
         <Route path="/posts/:id"  component={ShowPost} />
         <Route exact path="/editor" component={Editor} />
         <Route exact path='/callback' component={Callback}/>
