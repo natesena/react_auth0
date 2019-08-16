@@ -1,7 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-//Should uninstall below
-// import {stateToHTML} from 'draft-js-export-html';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw } from 'draft-js';
 

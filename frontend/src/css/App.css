@@ -3,7 +3,9 @@
   position: relative;
 }
 .nav {
-  background-color: blue;
+  background-color: transparent;
+  color: white;
+  text-shadow: 0 0 2px rgba(50, 50, 50, 0.5);
   width: 100%;
   position: absolute;
   top: 0;
@@ -31,24 +33,6 @@
   z-index: 0;
   width: 100%;
   box-sizing: border-box;
-}
-@media only screen and (max-width: 420px) {
-  .body {
-    margin-top: 20px;
-    padding: 10px;
-  }
-}
-@media only screen and (min-width: 420px) and (max-width: 720px) {
-  .body {
-    margin-top: 30px;
-    padding: 10px;
-  }
-}
-@media only screen and (min-width: 720px) {
-  .body {
-    margin-top: 50px;
-    padding: 20px 30px;
-  }
 }
 .post-creation-container {
   height: 100%;
@@ -81,6 +65,7 @@
   text-decoration: none;
   float: right;
   color: white;
+  text-shadow: 0 0 2px rgba(50, 50, 50, 0.5);
   background: transparent;
   border: 1px solid white;
 }
