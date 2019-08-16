@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom'
 import axios from 'axios';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 // import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -14,6 +14,22 @@ class ControlledEditor extends Component {
         titleEditorState: EditorState.createEmpty(),
         editorState: EditorState.createEmpty()
       };
+    }
+
+    componentDidMount(){
+      const { id } = this.props.match.params
+      axios.get(`/api/posts/${id}`)
+      .then((res)=>{
+        let previousTitleEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.title)))
+        let previousPreviewEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.previewBody)))
+        let previousEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.body)))
+
+        this.setState({
+          previewEditorState: previousPreviewEditorState,
+          titleEditorState: previousTitleEditorState,
+          editorState: previousEditorState
+        })
+      })
     }
   
     onEditorStateChange: Function = (editorState) => {

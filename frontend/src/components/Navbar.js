@@ -13,7 +13,7 @@ function Navbar(props){
     return (
       <nav className="nav" style={{overflow: 'hidden'}}>
       {/* <a href='/' className='home-button'>NateSena</a> */}
-      <Link to="/" className='home-button'>NateSena</Link>
+      <Link to="/posts" className='home-button'>NateSena</Link>
       <div>
         {
           !auth0Client.isAuthenticated() &&

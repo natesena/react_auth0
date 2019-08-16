@@ -10,6 +10,12 @@ class Welcome extends React.Component{
         this.startAnimation()
     };
 
+    componentWillUnmount() {
+        // window.removeEventListener("resize", this.handleWindowResize);
+        window.cancelAnimationFrame(this.requestID);
+        // this.controls.dispose();
+    }
+
     setupScene = () => {
         const width = this.el.clientWidth;
         const height = this.el.clientHeight;

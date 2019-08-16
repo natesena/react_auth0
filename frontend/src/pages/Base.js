@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import PreviewPost from '../components/PreviewPost.js'
 // import Post from '../components/Post.js'
 
@@ -44,7 +45,7 @@ class Base extends React.Component{
                                     <PreviewPost  id={post._id} title_es={post.title} preview_bes={post.previewBody}/>
                                     <div className={'preview-post-buttons-container'}>
                                         <button className={'preview-post-button'} onClick={this.deletePost.bind(this, post._id)} >Delete</button>
-                                        <button className={'preview-post-button'}>Edit</button>
+                                        <Link className={'preview-post-button'} to={`/posts/${post._id}/edit`}>Edit</Link>
                                     </div>
                                 </div>
                             )

@@ -13,6 +13,7 @@ import Navbar from './components/Navbar.js'
 
 
 function App() {
+
   return (
     <div className="App">
       <Navbar/>
@@ -20,7 +21,9 @@ function App() {
       {/* Here is where we want to use <Route> and <Switches> */}
         <Route exact path="/"  component={Welcome} />
         <Route exact path="/posts"  component={Base} />
+        <Route path="/posts/:id/edit"  render={(props) => <Editor {...props} />} />
         <Route path="/posts/:id"  component={ShowPost} />
+        {/* Look Up <Privateroute > */}
         <Route exact path="/editor" component={Editor} />
         <Route exact path='/callback' component={Callback}/>
       </div>
