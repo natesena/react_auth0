@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
 import PreviewPost from '../components/PreviewPost.js'
 // import Post from '../components/Post.js'
 
@@ -36,8 +35,8 @@ class Base extends React.Component{
             {
                 this.state.posts.length >= 1
                 ?(this.state.posts.map((post, index) =>
-                    <div className="preview-post">
-                        <PreviewPost key={post._id} title_es={post.title} preview_bes={post.previewBody}/>
+                    <div className="preview-post" key={post._id}>
+                        <PreviewPost  id={post._id} title_es={post.title} preview_bes={post.previewBody}/>
                         <button onClick={this.deletePost.bind(this, post._id)} >Delete {index}</button>
                         <button>Edit</button>
                     </div>

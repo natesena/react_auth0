@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw } from 'draft-js';
 
@@ -11,7 +12,6 @@ class PreviewPost extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.props.preview_bes)
         let newTitleEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.title_es)))
         let newPreviewEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(this.props.preview_bes)))
         this.setState({
@@ -26,12 +26,16 @@ class PreviewPost extends React.Component {
                         this.state.titleEditorState && this.state.previewEditorState 
                         ? (
                             <div>
+                                <Link to={`/posts/${this.props.id}`} className={'preview-post-title-link'}>
+                                    <Editor 
+                                        className={'preview-post-title'}
+                                        toolbarHidden={true}
+                                        editorState={this.state.titleEditorState} 
+                                        readOnly
+                                    />
+                                </Link>
                                 <Editor 
-                                    toolbarHidden={true}
-                                    editorState={this.state.titleEditorState} 
-                                    readOnly
-                                />
-                                <Editor 
+                                    className={'preview-post-pbody'}
                                     toolbarHidden={true}
                                     editorState={this.state.previewEditorState} 
                                     readOnly

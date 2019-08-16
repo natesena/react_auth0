@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect} from 'react-router-dom'
 import axios from 'axios';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
@@ -8,6 +9,7 @@ class ControlledEditor extends Component {
     constructor(props) {
       super(props);
       this.state = {
+        savedPostID: false,
         previewEditorState: EditorState.createEmpty(),
         titleEditorState: EditorState.createEmpty(),
         editorState: EditorState.createEmpty()
@@ -42,6 +44,9 @@ class ControlledEditor extends Component {
       .then((res)=>{
         if(res.data.newpost){
           console.log('successfully saved to DB')
+          this.setState({
+            savedPostID: res.data.newpost._id
+          })
         }
       })
     }
@@ -49,26 +54,35 @@ class ControlledEditor extends Component {
     render() {
       const { editorState, previewEditorState, titleEditorState } = this.state;
       return (
-        <div className="post-creation-container">
-          <div className='title-editor-container'>
-            <h1>Title</h1>
-            <Editor editorState={titleEditorState} onEditorStateChange={this.onTitleEditorStateChange}/>
-          </div>
-          <div className='preview-editor-container'>
-            <h1>Preview Body</h1>
-            <Editor editorState={previewEditorState} onEditorStateChange={this.onPreviewEditorStateChange}/>
-          </div>
-          <div className="editor-container">
-            <h1>Body</h1>
-                <Editor
-                editorState={editorState}
-                onEditorStateChange={this.onEditorStateChange}
-                />
-          </div>
-          <div className="editor-actions-container">
-            <button className='editor-action-button' onClick={this.savePost.bind(this)}>Save</button>
-          </div>
+        <div>
+          {
+            !this.state.savedPostID
+            ? (
+              <div className="post-creation-container">
+                <div className='title-editor-container'>
+                  <h1>Title</h1>
+                  <Editor editorState={titleEditorState} onEditorStateChange={this.onTitleEditorStateChange}/>
+                </div>
+                <div className='preview-editor-container'>
+                  <h1>Preview Body</h1>
+                  <Editor editorState={previewEditorState} onEditorStateChange={this.onPreviewEditorStateChange}/>
+                </div>
+                <div className="editor-container">
+                  <h1>Body</h1>
+                      <Editor
+                      editorState={editorState}
+                      onEditorStateChange={this.onEditorStateChange}
+                      />
+                </div>
+                <div className="editor-actions-container">
+                  <button className='editor-action-button' onClick={this.savePost.bind(this)}>Save</button>
+                </div>
+              </div>
+            )
+            : <Redirect to={`/posts/${this.state.savedPostID}`}/>
+          }
         </div>
+        
       )
     }
   }
