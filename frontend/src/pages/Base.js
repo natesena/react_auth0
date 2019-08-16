@@ -1,12 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import PreviewPost from '../components/PreviewPost.js'
 // import Post from '../components/Post.js'
 
 class Base extends React.Component{
     state = {
         posts: []
     }
+
     componentDidMount(){
         axios.get('/api/posts')
         .then(res =>{
@@ -30,14 +32,14 @@ class Base extends React.Component{
     }
     render(){
         return(
-            <div className="body">
+            <div>
             {
                 this.state.posts.length >= 1
                 ?(this.state.posts.map((post, index) =>
-                    <div key={post._id}>
-                        <button>Edit Post</button>
-                        <Link to={`/posts/${post._id}`}>Read</Link>
-                        <button onClick={this.deletePost.bind(this, post._id)}>DELETE {index}</button>
+                    <div className="preview-post">
+                        <PreviewPost key={post._id} title_es={post.title} preview_bes={post.previewBody}/>
+                        <button onClick={this.deletePost.bind(this, post._id)} >Delete {index}</button>
+                        <button>Edit</button>
                     </div>
                 ))
                 :<p>No Posts Yet</p>

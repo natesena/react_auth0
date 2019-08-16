@@ -23,7 +23,6 @@ class ShowPost extends React.Component{
         })
     }
 
-// let html = stateToHTML(contentState);
     render(){
         return(
             <div>
