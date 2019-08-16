@@ -3,7 +3,7 @@ import { Redirect} from 'react-router-dom'
 import axios from 'axios';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+// import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 class ControlledEditor extends Component {
     constructor(props) {

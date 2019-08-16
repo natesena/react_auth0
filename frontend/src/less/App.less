@@ -73,11 +73,18 @@
     color: white
 }
 .nav-button{
+    font-size: 12px;
+    cursor: pointer;
     text-decoration: none;
     float: right;
     color: white;
     background: transparent;
     border: 1px solid white;
+    &:hover {
+        color: @main-color;
+        border: 1px solid @main-color;
+        background-color: white
+    }
     @media only screen and (max-width: @phone){
         padding: 2px 3px;
         border-radius: 2px
@@ -87,7 +94,7 @@
         border-radius: 3px
     }
     @media only screen and (min-width: @tablet){
-        margin: 0 5px;
+        margin: 0 2px;
         padding: 3px 5px;
         border-radius: 5px
     }
@@ -96,16 +103,37 @@
 .preview-post{
     box-sizing: border-box;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid black
+    margin: 20px 0;
+    border: 1px solid rgba(100,100,100,0.1);
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(50,50,50,0.5)
 }
 
 .preview-post-title-link{
     text-decoration: none
 }
 .preview-post-title{
-    margin: 0
+    margin: 10px 0
 }
 .preview-post-pbody{
-    margin: 0
+    margin: 5px 0
 }
+.preview-post-buttons-container{
+    overflow: hidden;
+}
+.preview-post-button{
+    float: right;
+    cursor: pointer;
+    color: @main-color;
+    border: 1px solid @main-color;
+    background: transparent;
+    border-radius: 3px;
+    margin: 0 2px;
+    &:hover {
+        color: white;
+        background-color:@main-color;
+        border: 1px solid @main-color
+    }
+}
+
+

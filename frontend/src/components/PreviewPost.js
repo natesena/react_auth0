@@ -26,20 +26,22 @@ class PreviewPost extends React.Component {
                         this.state.titleEditorState && this.state.previewEditorState 
                         ? (
                             <div>
-                                <Link to={`/posts/${this.props.id}`} className={'preview-post-title-link'}>
+                                <div className={'preview-post-title'}>
+                                    <Link to={`/posts/${this.props.id}`} className={'preview-post-title-link'}>
+                                        <Editor 
+                                            toolbarHidden={true}
+                                            editorState={this.state.titleEditorState} 
+                                            readOnly
+                                        />
+                                    </Link>
+                                </div>
+                                <div className={'preview-post-pbody'}>
                                     <Editor 
-                                        className={'preview-post-title'}
                                         toolbarHidden={true}
-                                        editorState={this.state.titleEditorState} 
+                                        editorState={this.state.previewEditorState} 
                                         readOnly
                                     />
-                                </Link>
-                                <Editor 
-                                    className={'preview-post-pbody'}
-                                    toolbarHidden={true}
-                                    editorState={this.state.previewEditorState} 
-                                    readOnly
-                                />
+                                </div>
                             </div>
                         )
                         : <p>loading</p>

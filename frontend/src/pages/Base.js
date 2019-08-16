@@ -32,16 +32,26 @@ class Base extends React.Component{
     render(){
         return(
             <div>
+                
             {
                 this.state.posts.length >= 1
-                ?(this.state.posts.map((post, index) =>
-                    <div className="preview-post" key={post._id}>
-                        <PreviewPost  id={post._id} title_es={post.title} preview_bes={post.previewBody}/>
-                        <button onClick={this.deletePost.bind(this, post._id)} >Delete {index}</button>
-                        <button>Edit</button>
+                ?(
+                    <div>
+                        <h1>Posts</h1>
+                        {
+                            this.state.posts.map((post) =>
+                                <div className="preview-post" key={post._id}>
+                                    <PreviewPost  id={post._id} title_es={post.title} preview_bes={post.previewBody}/>
+                                    <div className={'preview-post-buttons-container'}>
+                                        <button className={'preview-post-button'} onClick={this.deletePost.bind(this, post._id)} >Delete</button>
+                                        <button className={'preview-post-button'}>Edit</button>
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
-                ))
-                :<p>No Posts Yet</p>
+                )
+                :<h1>No Posts Yet</h1>
             }
             </div>
         )

@@ -76,11 +76,18 @@
   color: white;
 }
 .nav-button {
+  font-size: 12px;
+  cursor: pointer;
   text-decoration: none;
   float: right;
   color: white;
   background: transparent;
   border: 1px solid white;
+}
+.nav-button:hover {
+  color: blue;
+  border: 1px solid blue;
+  background-color: white;
 }
 @media only screen and (max-width: 420px) {
   .nav-button {
@@ -96,7 +103,7 @@
 }
 @media only screen and (min-width: 720px) {
   .nav-button {
-    margin: 0 5px;
+    margin: 0 2px;
     padding: 3px 5px;
     border-radius: 5px;
   }
@@ -104,15 +111,34 @@
 .preview-post {
   box-sizing: border-box;
   padding: 10px;
-  margin: 10px 0;
-  border: 1px solid black;
+  margin: 20px 0;
+  border: 1px solid rgba(100, 100, 100, 0.1);
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(50, 50, 50, 0.5);
 }
 .preview-post-title-link {
   text-decoration: none;
 }
 .preview-post-title {
-  margin: 0;
+  margin: 10px 0;
 }
 .preview-post-pbody {
-  margin: 0;
+  margin: 5px 0;
+}
+.preview-post-buttons-container {
+  overflow: hidden;
+}
+.preview-post-button {
+  float: right;
+  cursor: pointer;
+  color: blue;
+  border: 1px solid blue;
+  background: transparent;
+  border-radius: 3px;
+  margin: 0 2px;
+}
+.preview-post-button:hover {
+  color: white;
+  background-color: blue;
+  border: 1px solid blue;
 }

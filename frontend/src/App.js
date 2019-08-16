@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/App.css';
+import './css/WYSIWYG.css'
 import {Route} from 'react-router-dom'
 
 import Base from './pages/Base.js'

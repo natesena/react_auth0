@@ -14,16 +14,16 @@ function Navbar(props){
       <nav className="nav" style={{overflow: 'hidden'}}>
       {/* <a href='/' className='home-button'>NateSena</a> */}
       <Link to="/" className='home-button'>NateSena</Link>
-      <div style={{float: 'right'}}>
+      <div>
         {
           !auth0Client.isAuthenticated() &&
-          <button className="" onClick={auth0Client.signIn} >Sign In</button>
+          <button className="nav-button" onClick={auth0Client.signIn} >Sign In</button>
         }
         {
           auth0Client.isAuthenticated() &&
           <div>
-            <label className="">{auth0Client.getProfile().name}</label>
-            <button className="" onClick={() => {signOut()}}>Sign Out</button>
+            <label>{auth0Client.getProfile().name}</label>
+            <button className="nav-button" onClick={() => {signOut()}}>Sign Out</button>
           </div>
         }
       </div>
