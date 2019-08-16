@@ -8,26 +8,38 @@ class ControlledEditor extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        editorState: EditorState.createEmpty(),
+        previewEditorState: EditorState.createEmpty(),
+        titleEditorState: EditorState.createEmpty(),
+        editorState: EditorState.createEmpty()
       };
     }
   
     onEditorStateChange: Function = (editorState) => {
+      // Need to make this know what editor we are working with
       this.setState({
-        editorState,
+        editorState
       });
+    };
 
+    onTitleEditorStateChange: Function = (titleEditorState) => {
+      // Need to make this know what editor we are working with
+      this.setState({
+        titleEditorState
+      });
+    };
+    onPreviewEditorStateChange: Function = (previewEditorState) => {
+      // Need to make this know what editor we are working with
+      this.setState({
+        previewEditorState
+      });
     };
 
     savePost(){
-      let contentState = this.state.editorState.getCurrentContent()
-      let persistableData = convertToRaw(contentState)
-      let JSONpersistableData = JSON.stringify(persistableData)
-      console.log('persistableData: ', persistableData)
-      console.log('JSONpersistableData: ', JSONpersistableData)
-      axios.post('/api/Posts', {body: JSONpersistableData})
+      let titleData = JSON.stringify(convertToRaw(this.state.titleEditorState.getCurrentContent()))
+      let previewData = JSON.stringify(convertToRaw(this.state.previewEditorState.getCurrentContent()))
+      let bodyData = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()))
+      axios.post('/api/Posts', {title: titleData, previewBody: previewData, body: bodyData})
       .then((res)=>{
-        console.log('post res: ', res)
         if(res.data.newpost){
           console.log('successfully saved to DB')
         }
@@ -35,19 +47,25 @@ class ControlledEditor extends Component {
     }
   
     render() {
-      const { editorState } = this.state;
+      const { editorState, previewEditorState, titleEditorState } = this.state;
       return (
-        <div>
+        <div className="post-creation-container">
+          <div className='title-editor-container'>
+            <h1>Title</h1>
+            <Editor editorState={titleEditorState} onEditorStateChange={this.onTitleEditorStateChange}/>
+          </div>
+          <div className='preview-editor-container'>
+            <h1>Preview Body</h1>
+            <Editor editorState={previewEditorState} onEditorStateChange={this.onPreviewEditorStateChange}/>
+          </div>
           <div className="editor-container">
+            <h1>Body</h1>
                 <Editor
-                // toolbarClassName="toolbar-class"
                 editorState={editorState}
-                wrapperClassName="demo-wrapper"
-                editorClassName="demo-editor"
                 onEditorStateChange={this.onEditorStateChange}
                 />
           </div>
-          <div>
+          <div className="editor-actions-container">
             <button className='editor-action-button' onClick={this.savePost.bind(this)}>Save</button>
           </div>
         </div>

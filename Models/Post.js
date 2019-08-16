@@ -2,8 +2,8 @@ const
     Mongoose = require('mongoose')
 
 PostSchema = new Mongoose.Schema({
-    // title: {type: String, required: true},
-    // description: {type: Object, required: true},
+    title: {type: Object, required: true},
+    previewBody: {type: Object, required: true},
     // date: {type: Date, default: Date.now},
     // type: {type: String, required: true},
     // buttonLinks: [
@@ -18,7 +18,7 @@ PostSchema = new Mongoose.Schema({
     //         featured: {type: Boolean}
     //     }
     // ],
-    body: {type: Object}
+    body: {type: Object, required: true}
     // aframeDescription: {type: String, required: true},
     // aframeBody: {type: String, required: true}
 })

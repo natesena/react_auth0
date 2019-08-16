@@ -31,11 +31,14 @@
     position: absolute;
     top: 0;
     z-index: 0;
+    width: 100%;
     box-sizing: border-box;
     @media only screen and (max-width: @phone){
+        margin-top: 20px;
         padding: 10px
     }
     @media only screen and (min-width: @phone) and (max-width: @tablet){
+        margin-top: 30px;
         padding: 10px 
     }
     @media only screen and (min-width: @tablet){
@@ -43,12 +46,17 @@
         padding: 20px 30px
     }
 }
-.editor-container{
-    box-sizing: border-box;
-    padding: 10px;
-    width: 100%;
-    height: 100%
+
+.post-creation-container{
+    height: 100%;
 }
+.title-editor-container, .editor-container, .preview-editor-container{
+    box-sizing: border-box;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 10px 5px;
+    width: 100%;
+}
+
 .editor-action-button{
     cursor: pointer;
     background-color: @main-color;
