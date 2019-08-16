@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 // import Post from '../components/Post.js'
 
 class Base extends React.Component{
@@ -7,7 +8,7 @@ class Base extends React.Component{
         posts: []
     }
     componentDidMount(){
-        axios.get('/api/Posts')
+        axios.get('/api/posts')
         .then(res =>{
             if(res.data.Posts){
                 this.setState({
@@ -18,11 +19,11 @@ class Base extends React.Component{
     }
 
     deletePost(id){
-        axios.delete(`/api/Posts/${id}`)
+        axios.delete(`/api/posts/${id}`)
         .then((res)=>{
             res.data.Post
             ?this.setState({
-                posts: [...this.state.posts.filter(post => post._id != id)]
+                posts: [...this.state.posts.filter(post => post._id !== id)]
             })
             :console.log("There was an error handling post removal")
         })
@@ -33,7 +34,11 @@ class Base extends React.Component{
             {
                 this.state.posts.length >= 1
                 ?(this.state.posts.map((post, index) =>
-                    <button key={post._id} onClick={this.deletePost.bind(this, post._id)}>DELETE {index}</button>
+                    <div key={post._id}>
+                        <button>Edit Post</button>
+                        <Link to={`/posts/${post._id}`}>Read</Link>
+                        <button onClick={this.deletePost.bind(this, post._id)}>DELETE {index}</button>
+                    </div>
                 ))
                 :<p>No Posts Yet</p>
             }

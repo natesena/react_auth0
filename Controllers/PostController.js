@@ -25,6 +25,7 @@ module.exports = {
         })
     },
     show: (req,res)=>{
+        console.log("WE IN THE SHOW ROUTE")
         Post.findById(req.params.id, (err, Post)=>{
             if(err){
                 res.send({message: 'failure', err: err.code})

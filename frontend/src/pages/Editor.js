@@ -16,14 +16,18 @@ class ControlledEditor extends Component {
       this.setState({
         editorState,
       });
+
     };
 
-    savePost: Function = () => {
+    savePost(){
       let contentState = this.state.editorState.getCurrentContent()
-      let persistableData = JSON.stringify(convertToRaw(contentState))
-      axios.post('/api/Posts', persistableData)
+      let persistableData = convertToRaw(contentState)
+      let JSONpersistableData = JSON.stringify(persistableData)
+      console.log('persistableData: ', persistableData)
+      console.log('JSONpersistableData: ', JSONpersistableData)
+      axios.post('/api/Posts', {body: JSONpersistableData})
       .then((res)=>{
-        console.log(res)
+        console.log('post res: ', res)
         if(res.data.newpost){
           console.log('successfully saved to DB')
         }
@@ -44,7 +48,7 @@ class ControlledEditor extends Component {
                 />
           </div>
           <div>
-            <button className='editor-action-button' onClick={this.savePost()}>Save</button>
+            <button className='editor-action-button' onClick={this.savePost.bind(this)}>Save</button>
           </div>
         </div>
       )
