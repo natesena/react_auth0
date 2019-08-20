@@ -6,7 +6,8 @@ import { Editor } from 'react-draft-wysiwyg';
 // import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 class ControlledEditor extends Component {
-    constructor(props) {
+    
+  constructor(props) {
       super(props);
       this.state = {
         savedPostID: false,
@@ -56,15 +57,32 @@ class ControlledEditor extends Component {
       let titleData = JSON.stringify(convertToRaw(this.state.titleEditorState.getCurrentContent()))
       let previewData = JSON.stringify(convertToRaw(this.state.previewEditorState.getCurrentContent()))
       let bodyData = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()))
-      axios.post('/api/Posts', {title: titleData, previewBody: previewData, body: bodyData})
-      .then((res)=>{
-        if(res.data.newpost){
-          console.log('successfully saved to DB')
-          this.setState({
-            savedPostID: res.data.newpost._id
-          })
-        }
-      })
+
+      const { id } = this.props.match.params
+      id
+      ?(
+        axios.patch(`/api/Posts/${id}`, {title: titleData, previewBody: previewData, body: bodyData})
+        .then((res)=>{
+          if(res.data.updatedPost){
+            console.log('successfully edited and saved to DB')
+            this.setState({
+              savedPostID: res.data.updatedPost._id
+            })
+          }
+        })
+        
+      )
+      :(
+        axios.post('/api/Posts', {title: titleData, previewBody: previewData, body: bodyData})
+        .then((res)=>{
+          if(res.data.newpost){
+            console.log('successfully saved to DB')
+            this.setState({
+              savedPostID: res.data.newpost._id
+            })
+          }
+        })
+      )
     }
   
     render() {
@@ -72,8 +90,8 @@ class ControlledEditor extends Component {
       return (
         <div>
           {
-            !this.state.savedPostID
-            ? (
+            // !this.state.savedPostID
+            // ? (
               <div className="post-creation-container">
                 <div className='title-editor-container'>
                   <h1>Title</h1>
@@ -94,8 +112,8 @@ class ControlledEditor extends Component {
                   <button className='editor-action-button' onClick={this.savePost.bind(this)}>Save</button>
                 </div>
               </div>
-            )
-            : <Redirect to={`/posts/${this.state.savedPostID}`}/>
+            // )
+            // : <Redirect to={`/posts/${this.state.savedPostID}`}/>
           }
         </div>
         

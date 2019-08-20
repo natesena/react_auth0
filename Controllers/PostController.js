@@ -44,6 +44,7 @@ module.exports = {
         })
     },
     edit: (req,res)=>{
+        console.log('We in the edit route ya boy')
         Post.findByIdAndUpdate(req.params.id, req.body, (err, updatedPost)=>{
             if(err){
                 res.send({message: 'failure', err: err.code})
