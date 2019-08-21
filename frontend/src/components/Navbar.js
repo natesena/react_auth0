@@ -12,22 +12,21 @@ function Navbar(props){
 
     return (
       <nav className="nav" style={{overflow: 'hidden'}}>
-      {/* <a href='/' className='home-button'>NateSena</a> */}
-      <Link to="/posts" className='home-button'>NateSena</Link>
-      <div>
-        {
-          !auth0Client.isAuthenticated() &&
-          <button className="nav-button" onClick={auth0Client.signIn} >Sign In</button>
-        }
-        {
-          auth0Client.isAuthenticated() &&
-          <div>
-            <label>{auth0Client.getProfile().name}</label>
-            <button className="nav-button" onClick={() => {signOut()}}>Sign Out</button>
-          </div>
-        }
-      </div>
-      <Link to='/editor' className='nav-button'>Editor</Link>
+        <Link to="/posts" className='home-button'>NateSena</Link>
+        <div className={'float-right'}>
+          {
+            !auth0Client.isAuthenticated() &&
+            <button className="nav-button" onClick={auth0Client.signIn} >Sign In</button>
+          }
+          {
+            auth0Client.isAuthenticated() &&
+            <div>
+              <label>{auth0Client.getProfile().name}</label>
+              <button className="nav-button" onClick={() => {signOut()}}>Sign Out</button>
+            </div>
+          }
+        </div>
+        <Link to='/editor' className='nav-button'>Editor</Link>
       </nav>
     )
 }

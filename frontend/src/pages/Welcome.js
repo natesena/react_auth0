@@ -1,5 +1,6 @@
 import React from 'react'
 import * as THREE from 'three'
+import helveticaRegular from './../../node_modules/three/examples/fonts/helvetiker_regular.typeface.json'
 
 class Welcome extends React.Component{
     
@@ -37,6 +38,23 @@ class Welcome extends React.Component{
         var geometry = new THREE.BoxGeometry( 1, 1, 1 );
         var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
         this.cube = new THREE.Mesh( geometry, material );
+
+        var loader = new THREE.FontLoader();
+        var font = loader.parse(helveticaRegular)
+        this.welcomeText = new THREE.TextGeometry( 'Hello three.js!', {
+            font: font,
+            size: 80,
+            height: 5,
+            curveSegments: 12,
+            bevelEnabled: true,
+            bevelThickness: 10,
+            bevelSize: 8,
+            bevelOffset: 0,
+            bevelSegments: 5
+        });
+        
+        console.log(this.welcomeText)
+        this.scene.add(this.welcomeText)
         this.scene.add( this.cube );
     }
 
