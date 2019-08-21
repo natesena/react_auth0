@@ -32,8 +32,7 @@ class Base extends React.Component{
     }
     render(){
         return(
-            <div>
-                
+            <div className='body-liner'>
             {
                 this.state.posts.length >= 1
                 ?(

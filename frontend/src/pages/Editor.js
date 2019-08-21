@@ -60,7 +60,7 @@ class ControlledEditor extends Component {
 
       const { id } = this.props.match.params
       id
-      ?(
+      ?(//edit post
         axios.patch(`/api/Posts/${id}`, {title: titleData, previewBody: previewData, body: bodyData})
         .then((res)=>{
           if(res.data.updatedPost){
@@ -72,7 +72,7 @@ class ControlledEditor extends Component {
         })
         
       )
-      :(
+      :(//save as new post
         axios.post('/api/Posts', {title: titleData, previewBody: previewData, body: bodyData})
         .then((res)=>{
           if(res.data.newpost){
@@ -88,7 +88,7 @@ class ControlledEditor extends Component {
     render() {
       const { editorState, previewEditorState, titleEditorState } = this.state;
       return (
-        <div>
+        <div className="body-liner">
           {
             // !this.state.savedPostID
             // ? (
