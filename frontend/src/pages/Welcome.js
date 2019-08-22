@@ -11,11 +11,9 @@ class Welcome extends React.Component{
         axios.get('/api/visitors')
         .then((res) =>{
             if(res.data.err){//if there were errors in our endpoint
-                console.log('there was an error gettting visitor data')
+                console.log('there was an error getting visitor data')
             }
             else{
-                console.log(res.data.visitorCount)
-                //add text to scene saying you are the ____ visitor
                 this.addVisitorText(res.data.visitorCount)
             }
             
@@ -70,7 +68,7 @@ class Welcome extends React.Component{
     addVisitorText(visitorCount){
         var loader = new THREE.FontLoader();
         var font = loader.parse(helveticaRegular)
-        var welcomeTextGeometry = new THREE.TextGeometry( `${visitorCount}`, {
+        var welcomeTextGeometry = new THREE.TextGeometry( `You are the ${visitorCount} Visitor`, {
             font: font,
             size: .5,
             height: 0.05

@@ -7,10 +7,17 @@ class Login extends React.Component{
         return(
             
                 <div className={'body-liner'}>
-                    {
-                        !auth0Client.isAuthenticated() &&
-                        <button onClick={auth0Client.signIn} >Sign In</button>
-                    }
+                    <div className={'window-table'}>
+                        <div className={'table-center-row'}>
+                            <h1 className={'text-center'}>Login Below</h1>
+                            <p>No extended functionality exists for users unless you are Nathaniel Sena, the site administrator</p>
+                            {
+                                !auth0Client.isAuthenticated() &&
+                                <button className={'login-button'} onClick={auth0Client.signIn} >Sign In</button>
+                            }
+                        </div>
+                    </div>
+                    
                 </div>
         )
     }

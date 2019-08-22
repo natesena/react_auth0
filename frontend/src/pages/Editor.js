@@ -19,18 +19,21 @@ class ControlledEditor extends Component {
 
     componentDidMount(){
       const { id } = this.props.match.params
-      axios.get(`/api/posts/${id}`)
-      .then((res)=>{
-        let previousTitleEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.title)))
-        let previousPreviewEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.previewBody)))
-        let previousEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.body)))
+      if(id){
+        axios.get(`/api/posts/${id}`)
+        .then((res)=>{
+          let previousTitleEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.title)))
+          let previousPreviewEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.previewBody)))
+          let previousEditorState = EditorState.createWithContent(convertFromRaw(JSON.parse(res.data.Post.body)))
 
-        this.setState({
-          previewEditorState: previousPreviewEditorState,
-          titleEditorState: previousTitleEditorState,
-          editorState: previousEditorState
+          this.setState({
+            previewEditorState: previousPreviewEditorState,
+            titleEditorState: previousTitleEditorState,
+            editorState: previousEditorState
+          })
         })
-      })
+      }
+      //else we are making a new post
     }
   
     onEditorStateChange: Function = (editorState) => {
