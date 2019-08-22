@@ -4,6 +4,6 @@ const
     VisitorRouter = new express.Router()
 
 VisitorRouter.route('/')
-    .post(VisitorCTRL.find)
+    .get(VisitorCTRL.find)
 
 module.exports = VisitorRouter

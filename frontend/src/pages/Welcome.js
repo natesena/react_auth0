@@ -8,8 +8,17 @@ class Welcome extends React.Component{
     state = { isMounted: true };
 
     componentDidMount() {
-        axios.post('/api/visitors', (req,res)=>{
-            console.log(res)
+        axios.get('/api/visitors')
+        .then((res) =>{
+            if(res.data.err){//if there were errors in our endpoint
+                console.log('there was an error gettting visitor data')
+            }
+            else{
+                console.log(res.data.visitorCount)
+                //add text to scene saying you are the ____ visitor
+                this.addVisitorText(res.data.visitorCount)
+            }
+            
         })
         this.setupScene()
         this.startAnimation()
@@ -54,9 +63,14 @@ class Welcome extends React.Component{
         
         this.cube = new THREE.Mesh( geometry, cubeMaterial );
 
+        
+        this.scene.add( this.cube );
+    }
+
+    addVisitorText(visitorCount){
         var loader = new THREE.FontLoader();
         var font = loader.parse(helveticaRegular)
-        var welcomeTextGeometry = new THREE.TextGeometry( 'Hello three.js!', {
+        var welcomeTextGeometry = new THREE.TextGeometry( `${visitorCount}`, {
             font: font,
             size: .5,
             height: 0.05
@@ -65,7 +79,6 @@ class Welcome extends React.Component{
         this.welcomeTextGeometry = new THREE.Mesh( welcomeTextGeometry, textMaterial );
         this.welcomeTextGeometry.position.y = 1
         this.scene.add(this.welcomeTextGeometry)
-        this.scene.add( this.cube );
     }
 
     startAnimation = () => {
