@@ -9,6 +9,16 @@ class Welcome extends React.Component{
     componentDidMount() {
         this.setupScene()
         this.startAnimation()
+        window.addEventListener('resize', this.handleWindowResize);
+    };
+
+    handleWindowResize = () => {
+        const width = this.el.clientWidth;
+        const height = this.el.clientHeight;
+    
+        this.renderer.setSize( width, height );
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
     };
 
     componentWillUnmount() {
@@ -52,8 +62,7 @@ class Welcome extends React.Component{
             bevelOffset: 0,
             bevelSegments: 5
         });
-        
-        console.log(this.welcomeText)
+
         this.scene.add(this.welcomeText)
         this.scene.add( this.cube );
     }

@@ -7,6 +7,7 @@ import Welcome from './pages/Welcome.js'
 import Base from './pages/Base.js'
 import Editor from './pages/Editor.js'
 import ShowPost from './pages/ShowPost.js'
+import Login from './pages/Login.js'
 
 import Callback from './components/Callback.js'
 import Navbar from './components/Navbar.js'
@@ -20,6 +21,7 @@ function App() {
       <div className="body">
       {/* Here is where we want to use <Route> and <Switches> */}
         <Route exact path="/"  component={Welcome} />
+        <Route exact path="/login"  component={Login} />
         <Route exact path="/posts"  component={Base} />
         {/* <Route path="/posts/:id/edit"  render={Editor} /> */}
         <Route exact path="/posts/:id"  component={ShowPost} />

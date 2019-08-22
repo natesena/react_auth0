@@ -78,6 +78,39 @@
   text-decoration: none;
   color: white;
 }
+.nav-hamburger {
+  float: right;
+}
+@media only screen and (max-width: 420px) {
+  .nav-hamburger {
+    display: block;
+  }
+}
+@media only screen and (min-width: 420px) and (max-width: 720px) {
+  .nav-hamburger {
+    display: none;
+  }
+}
+@media only screen and (min-width: 720px) {
+  .nav-hamburger {
+    display: none;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .nav-options {
+    display: none;
+  }
+}
+@media only screen and (min-width: 420px) and (max-width: 720px) {
+  .nav-options {
+    display: block;
+  }
+}
+@media only screen and (min-width: 720px) {
+  .nav-options {
+    display: block;
+  }
+}
 .nav-button {
   float: right;
   font-size: 12px;
@@ -111,6 +144,10 @@
     padding: 3px 5px;
     border-radius: 5px;
   }
+}
+.nav-signout {
+  color: white;
+  background-color: transparent;
 }
 .preview-post {
   box-sizing: border-box;

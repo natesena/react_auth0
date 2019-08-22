@@ -2,6 +2,8 @@ import React from 'react'
 import {Link, withRouter} from 'react-router-dom';
 //withRouter  gives component navigation abilities??
 import auth0Client from '../Auth/Auth.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar(props){
 
@@ -13,20 +15,18 @@ function Navbar(props){
     return (
       <nav className="nav" style={{overflow: 'hidden'}}>
         <Link to="/posts" className='home-button'>NateSena</Link>
-        <div className={'float-right'}>
-          {
-            !auth0Client.isAuthenticated() &&
-            <button className="nav-button" onClick={auth0Client.signIn} >Sign In</button>
-          }
-          {
-            auth0Client.isAuthenticated() &&
-            <div>
-              <label>{auth0Client.getProfile().name}</label>
-              <button className="nav-button" onClick={() => {signOut()}}>Sign Out</button>
-            </div>
-          }
+        <FontAwesomeIcon icon={faBars} className={'nav-hamburger'} />
+        <div className={'nav-options'}>
+            {
+              auth0Client.isAuthenticated() &&
+              <div className={'nav-button'}>
+                <label>{auth0Client.getProfile().name}</label>
+                <button className={'nav-signout'} onClick={() => {signOut()}}>Sign Out</button>
+              </div>
+            }
+          <Link to='/editor' className={'nav-button'}>Editor</Link>
         </div>
-        <Link to='/editor' className='nav-button'>Editor</Link>
+        
       </nav>
     )
 }
