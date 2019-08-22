@@ -1,5 +1,6 @@
 import React from 'react'
 import * as THREE from 'three'
+import axios from 'axios'
 import helveticaRegular from './../../node_modules/three/examples/fonts/helvetiker_regular.typeface.json'
 
 class Welcome extends React.Component{
@@ -7,6 +8,9 @@ class Welcome extends React.Component{
     state = { isMounted: true };
 
     componentDidMount() {
+        axios.post('/api/visitors', (req,res)=>{
+            console.log(res)
+        })
         this.setupScene()
         this.startAnimation()
         window.addEventListener('resize', this.handleWindowResize);
@@ -55,7 +59,7 @@ class Welcome extends React.Component{
         var welcomeTextGeometry = new THREE.TextGeometry( 'Hello three.js!', {
             font: font,
             size: .5,
-            height: 0.1
+            height: 0.05
         });
         var textMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
         this.welcomeTextGeometry = new THREE.Mesh( welcomeTextGeometry, textMaterial );
