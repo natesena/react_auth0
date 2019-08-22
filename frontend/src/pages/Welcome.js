@@ -46,24 +46,21 @@ class Welcome extends React.Component{
         this.el.appendChild( this.renderer.domElement );
 
         var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-        this.cube = new THREE.Mesh( geometry, material );
+        var cubeMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+        
+        this.cube = new THREE.Mesh( geometry, cubeMaterial );
 
         var loader = new THREE.FontLoader();
         var font = loader.parse(helveticaRegular)
-        this.welcomeText = new THREE.TextGeometry( 'Hello three.js!', {
+        var welcomeTextGeometry = new THREE.TextGeometry( 'Hello three.js!', {
             font: font,
-            size: 80,
-            height: 5,
-            curveSegments: 12,
-            bevelEnabled: true,
-            bevelThickness: 10,
-            bevelSize: 8,
-            bevelOffset: 0,
-            bevelSegments: 5
+            size: .5,
+            height: 0.1
         });
-
-        this.scene.add(this.welcomeText)
+        var textMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+        this.welcomeTextGeometry = new THREE.Mesh( welcomeTextGeometry, textMaterial );
+        this.welcomeTextGeometry.position.y = 1
+        this.scene.add(this.welcomeTextGeometry)
         this.scene.add( this.cube );
     }
 
