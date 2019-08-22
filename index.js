@@ -32,8 +32,9 @@ app.use(helmet()) //configure headers for security
 app.use(bodyParser.json()) //change request data to JSON
 app.use(cors()) //Accept all requests
 app.use(morgan('combined')) //log http requests...
-app.use('/api/posts', PostRouter)
 app.use('/api/visitors', VisitorRouter)
+app.use('/api/posts', PostRouter)
+
 
 //Check JWT before you can post
 // app.post('/post', checkJwt, (req,res)=>{

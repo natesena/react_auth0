@@ -33,7 +33,6 @@ class ControlledEditor extends Component {
           })
         })
       }
-      //else we are making a new post
     }
   
     onEditorStateChange: Function = (editorState) => {
