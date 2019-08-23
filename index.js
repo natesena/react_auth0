@@ -33,6 +33,9 @@ app.use(bodyParser.json()) //change request data to JSON
 app.use(cors()) //Accept all requests
 app.use(morgan('combined')) //log http requests...
 app.use('/api/visitors', VisitorRouter)
+app.use('/api/posts', (req,res,next)=>{
+    //if people POST to this API, we want to make sure they are authorized
+})
 app.use('/api/posts', PostRouter)
 
 

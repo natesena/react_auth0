@@ -8,7 +8,6 @@ const checkJwt = jwt({
       jwksRequestsPerMinute: 5,
       jwksUri: `https://nsena.auth0.com/.well-known/jwks.json`
     }),
-  
     // Validate the audience and the issuer.
     audience: 'eGMRjroJZpn8MlzshPcSXhqpQAK8iGlp',
     issuer: `https://nsena.auth0.com/`,
