@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.2.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.21",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "auth0-js": "^9.11.3",
     "axios": "^0.19.0",
     "draft-js": "^0.11.0",
+    "http-proxy-middleware": "^0.20.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-draft-wysiwyg": "^1.13.2",
@@ -40,6 +41,5 @@
   },
   "devDependencies": {
     "less-watch-compiler": "^1.13.0"
-  },
-  "proxy": "http://localhost:3001"
+  }
 }

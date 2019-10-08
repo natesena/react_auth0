@@ -1,34 +1,38 @@
-import React from 'react'
-import {Link, withRouter} from 'react-router-dom';
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
 //withRouter  gives component navigation abilities??
-import auth0Client from '../Auth/Auth.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { useAuth0 } from "../react-auth0-wrapper";
 
-function Navbar(props){
+function Navbar(props) {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
-    const signOut = () => {
-        auth0Client.signOut();
-        props.history.replace('/');
-    }
-
-    return (
-      <nav className="nav" style={{overflow: 'hidden'}}>
-        <Link to="/posts" className='home-button'>NateSena</Link>
-        <FontAwesomeIcon icon={faBars} className={'nav-hamburger'} />
-        <div className={'nav-options'}>
-            {
-              auth0Client.isAuthenticated() &&
-              <div className={'nav-button'}>
-                <label>{auth0Client.getProfile().name}</label>
-                <button className={'nav-signout'} onClick={() => {signOut()}}>Sign Out</button>
-              </div>
+  return (
+    <nav className="nav" style={{ overflow: "hidden" }}>
+      <Link to="/posts" className="home-button">
+        NateSena
+      </Link>
+      <FontAwesomeIcon icon={faBars} className={"nav-hamburger"} />
+      <div className={"nav-options"}>
+        {!isAuthenticated && (
+          <button
+            onClick={() =>
+              loginWithRedirect({ redirect_uri: "http://localhost:3000/" })
             }
-          <Link to='/editor' className={'nav-button'}>Editor</Link>
-        </div>
-        
-      </nav>
-    )
+          >
+            Log in
+          </button>
+        )}
+
+        {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+
+        <Link to="/editor" className={"nav-button"}>
+          Editor
+        </Link>
+      </div>
+    </nav>
+  );
 }
 
-export default withRouter(Navbar)
+export default withRouter(Navbar);

@@ -9,7 +9,7 @@ const checkJwt = jwt({
       jwksUri: `https://nsena.auth0.com/.well-known/jwks.json`
     }),
     // Validate the audience and the issuer.
-    audience: 'eGMRjroJZpn8MlzshPcSXhqpQAK8iGlp',
+    audience: process.env.AUTH0_CLIENT_ID,
     issuer: `https://nsena.auth0.com/`,
     algorithms: ['RS256']
   });

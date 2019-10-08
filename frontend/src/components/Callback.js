@@ -1,17 +1,15 @@
-import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
-import auth0Client from '../Auth/Auth.js';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+
+//documentation found at https://auth0.com/docs/libraries/auth0js/v9
 
 class Callback extends Component {
   async componentDidMount() {
-    await auth0Client.handleAuthentication();
-    this.props.history.replace('/');
+    this.props.history.replace("/");
   }
 
   render() {
-    return (
-      <p>Loading profile...</p>
-    );
+    return <p>Loading profile...</p>;
   }
 }
 

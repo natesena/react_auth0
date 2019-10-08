@@ -1,43 +1,42 @@
-const 
-    PORT = 3001
-    bodyParser = require('body-parser')
-    express = require('express')
-    cors = require('cors')
-    helmet = require('helmet')
-    morgan = require('morgan')
-    mongoose = require('mongoose')
-    dotenv = require('dotenv')
-    PostRouter = require('./Routes/PostRoutes.js')
-    VisitorRouter = require('./Routes/VisitorRoutes.js')
-    checkJwt = require('./Helpers/checkJWT.js')
+const PORT = 3001;
+bodyParser = require("body-parser");
+express = require("express");
+cors = require("cors");
+helmet = require("helmet");
+morgan = require("morgan");
+mongoose = require("mongoose");
+dotenv = require("dotenv");
+PostRouter = require("./Routes/PostRoutes.js");
+VisitorRouter = require("./Routes/VisitorRoutes.js");
+checkJwt = require("./Helpers/checkJWT.js");
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
+const app = express();
 
-MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/myapp'
+MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/myapp";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true }).
-catch(err => 
+mongoose
+  .connect(MONGODB_URI, { useNewUrlParser: true })
+  .catch(err =>
     console.log(`error connecting to DB: ${err}, MONGODB_URI: ${MONGODB_URI}`)
-)
+  );
 
-let db = mongoose.connection
-db.once('open', () => {
-    console.log("DB connected")
+let db = mongoose.connection;
+db.once("open", () => {
+  console.log("DB connected");
 });
 
 //middleware
-app.use(helmet()) //configure headers for security
-app.use(bodyParser.json()) //change request data to JSON
-app.use(cors()) //Accept all requests
-app.use(morgan('combined')) //log http requests...
-app.use('/api/visitors', VisitorRouter)
-app.use('/api/posts', (req,res,next)=>{
-    //if people POST to this API, we want to make sure they are authorized
-})
-app.use('/api/posts', PostRouter)
-
+app.use(helmet()); //configure headers for security
+app.use(bodyParser.json()); //change request data to JSON
+app.use(cors()); //Accept all requests
+app.use(morgan("combined")); //log http requests...
+app.use("/api/visitors", VisitorRouter);
+// app.use('/api/posts', (req,res,next)=>{
+//if people POST to this API, we want to make sure they are authorized
+// })
+app.use("/api/posts", PostRouter);
 
 //Check JWT before you can post
 // app.post('/post', checkJwt, (req,res)=>{
@@ -53,6 +52,6 @@ app.use('/api/posts', PostRouter)
 //     res.status(200).send
 // })
 
-app.listen(PORT, (err)=>{
-    console.log(err|| `listening on PORT ${PORT}`)
-})
+app.listen(PORT, err => {
+  console.log(err || `listening on PORT ${PORT}`);
+});
