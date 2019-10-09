@@ -12,9 +12,10 @@ window.addEventListener("load", () => {
   const auth0 = createAuth0Client({
     domain: "nsena.auth0.com",
     client_id: "eGMRjroJZpn8MlzshPcSXhqpQAK8iGlp",
-    redirect_uri: "http://localhost:3000/callback"
+    redirect_uri: "http://localhost:3000/callback",
+    scope: "openid profile email app_metadata"
   }).then(token => {
-    console.log("we got a token");
+    console.log(`we got a token: ${token} `);
   });
 });
 

@@ -12,8 +12,14 @@ import Login from "./pages/Login.js";
 import Callback from "./components/Callback.js";
 import Navbar from "./components/Navbar.js";
 import Profile from "./components/Profile";
+import { useAuth0 } from "./react-auth0-wrapper";
 
 function App() {
+  const { loading } = useAuth0();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="App">
       <Navbar />
