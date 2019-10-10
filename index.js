@@ -32,10 +32,18 @@ app.use(helmet()); //configure headers for security
 app.use(bodyParser.json()); //change request data to JSON
 app.use(cors()); //Accept all requests
 app.use(morgan("combined")); //log http requests...
+let brrr = (req, res) => {
+  console.log(-"===========================");
+  if (!req.user) {
+    console.log("there is no request in the user");
+    res.send({ message: "failure", err: 401 });
+  }
+};
+app.all("/", brrr);
 app.use("/api/visitors", VisitorRouter);
-// app.use('/api/posts', (req,res,next)=>{
-//if people POST to this API, we want to make sure they are authorized
-// })
+app.post("/api/posts", checkJwt, brrr);
+app.patch("/api/posts", checkJwt, brrr);
+app.delete("/api/posts", checkJwt, brrr);
 app.use("/api/posts", PostRouter);
 
 //Check JWT before you can post

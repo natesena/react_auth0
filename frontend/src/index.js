@@ -16,6 +16,7 @@ window.addEventListener("load", () => {
     scope: "openid profile email app_metadata"
   }).then(token => {
     console.log(`we got a token: ${token} `);
+    //save token....
   });
 });
 
