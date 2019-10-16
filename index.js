@@ -33,10 +33,12 @@ app.use(bodyParser.json()); //change request data to JSON
 app.use(cors()); //Accept all requests
 app.use(morgan("combined")); //log http requests...
 let brrr = (req, res) => {
-  console.log(-"===========================");
+  console.log(-"brrr===========================brrr");
   if (!req.user) {
     console.log("there is no request in the user");
-    res.send({ message: "failure", err: 401 });
+    res.send({ message: "failure", res: res, err: 401 });
+  } else {
+    res.send({ message: "success" });
   }
 };
 app.all("/", brrr);

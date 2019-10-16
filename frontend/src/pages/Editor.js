@@ -75,62 +75,74 @@ class ControlledEditor extends Component {
     );
 
     const { id } = this.props.match.params;
+    if (id) {
+      console.log("post id: ", id);
+    } else {
+      console.log("new post to be submitted");
+    }
 
     const { getTokenSilently } = this.context;
 
     const accessToken = (async () => {
       await getTokenSilently()
         .then(token => {
-          console.log(`got a token ${token}`);
+          console.log(`got a token: ${token}`);
+          id
+            ? //edit post
+              axios
+                .patch(
+                  `/api/Posts/${id}`,
+                  {
+                    //data argument
+                    title: titleData,
+                    previewBody: previewData,
+                    body: bodyData
+                  },
+                  {
+                    //presume this is a header
+                    headers: { Authorization: "Bearer " + token }
+                  }
+                )
+                .then(res => {
+                  if (res.data.updatedPost) {
+                    console.log("successfully edited and saved to DB");
+                    this.setState({
+                      savedPostID: res.data.updatedPost._id
+                    });
+                  }
+                })
+            : //save as new post
+              axios
+                .post(
+                  "/api/Posts",
+                  {
+                    //data argument
+                    title: titleData,
+                    previewBody: previewData,
+                    body: bodyData
+                  },
+                  {
+                    //presume this is a header
+                    headers: { Authorization: "Bearer " + token }
+                  }
+                )
+                .then(res => {
+                  if (res.data.message) {
+                    console.log(`message: ${res.data.message}`);
+                  }
+                  if (res.data.newpost) {
+                    console.log("successfully saved to DB");
+                    this.setState({
+                      savedPostID: res.data.newpost._id
+                    });
+                  }
+                });
         })
         .catch(err => {
-          console.log(`we got an error trying to get a token`);
+          console.log(`we got an error trying to get a token ${err}`);
+          // TODO send an alert that something went wrong authenticating the user
         });
     })();
-    console.log("accesstoken: ", accessToken);
-    id
-      ? //edit post
-        axios
-          .patch(
-            `/api/Posts/${id}`,
-            {
-              title: titleData,
-              previewBody: previewData,
-              body: bodyData
-            },
-            {
-              Authorization: "Bearer " + accessToken
-            }
-          )
-          .then(res => {
-            if (res.data.updatedPost) {
-              console.log("successfully edited and saved to DB");
-              this.setState({
-                savedPostID: res.data.updatedPost._id
-              });
-            }
-          })
-      : //save as new post
-        axios
-          .post(
-            "/api/Posts",
-            {
-              title: titleData,
-              previewBody: previewData,
-              body: bodyData
-            },
-            {
-              Authorization: "Bearer " + accessToken
-            }
-          )
-          .then(res => {
-            if (res.data.newpost) {
-              console.log("successfully saved to DB");
-              this.setState({
-                savedPostID: res.data.newpost._id
-              });
-            }
-          });
   }
 
   render() {
