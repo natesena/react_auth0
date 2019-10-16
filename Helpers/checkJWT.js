@@ -1,6 +1,8 @@
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
 
+//express-jwt
+//connect/express middleware that validates a JsonWebToken (JWT) and set the req.user with the attributes
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,

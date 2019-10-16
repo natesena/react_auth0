@@ -3,9 +3,12 @@ import React, { Component } from "react";
 import axios from "axios";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import { useAuth0 } from "../react-auth0-wrapper";
+// import { useAuth0 } from "../react-auth0-wrapper";
+import { Auth0Context } from "../react-auth0-wrapper";
 
 class ControlledEditor extends Component {
+  static contextType = Auth0Context;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -59,6 +62,7 @@ class ControlledEditor extends Component {
     });
   };
 
+  //const { isAuthenticated, loginWithRedirect, logout } = this.context;
   savePost() {
     let titleData = JSON.stringify(
       convertToRaw(this.state.titleEditorState.getCurrentContent())
@@ -71,11 +75,19 @@ class ControlledEditor extends Component {
     );
 
     const { id } = this.props.match.params;
-    const { getTokenSilently } = useAuth0();
 
-    const accessToken = async () => {
-      await getTokenSilently();
-    };
+    const { getTokenSilently } = this.context;
+
+    const accessToken = (async () => {
+      await getTokenSilently()
+        .then(token => {
+          console.log(`got a token ${token}`);
+        })
+        .catch(err => {
+          console.log(`we got an error trying to get a token`);
+        });
+    })();
+    console.log("accesstoken: ", accessToken);
     id
       ? //edit post
         axios

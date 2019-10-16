@@ -9,15 +9,19 @@ import config from "./auth_config.json";
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 window.addEventListener("load", () => {
-  const auth0 = createAuth0Client({
+  createAuth0Client({
     domain: "nsena.auth0.com",
     client_id: "eGMRjroJZpn8MlzshPcSXhqpQAK8iGlp",
     redirect_uri: "http://localhost:3000/callback",
-    scope: "openid profile email app_metadata"
-  }).then(token => {
-    console.log(`we got a token: ${token} `);
-    //save token....
-  });
+    scope: "openid profile email app_metadata" //need to ask for app_metadata to get it
+  })
+    .then(auth0 => {
+      console.log(`we got an auth0 Context: ${auth0} `);
+      //this.auth0client = auth0
+    })
+    .catch(err => {
+      console.log(`got an error instead of an auth0 context`);
+    });
 });
 
 // A function that routes the user to the right place
