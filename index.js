@@ -38,7 +38,17 @@ let brrr = (req, res) => {
     console.log("there is no request in the user");
     res.send({ message: "failure", res: res, err: 401 });
   } else {
-    res.send({ message: "success" });
+    console.log("roles", req.user["http://www.nateapp.comroles"]);
+    if ("admin" in req.user["http://www.nateapp.comroles"]) {
+      //think "in" in javascript is handled differently
+      res.send({ message: "success", user: req.user, roles: "admin" });
+      // continue
+    }
+    res.send({
+      message: "jwt authorized, but not admin user",
+      user: req.user,
+      roles: req.user["http://www.nateapp.comroles"]
+    });
   }
 };
 app.all("/", brrr);

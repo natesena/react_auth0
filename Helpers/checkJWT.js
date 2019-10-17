@@ -1,6 +1,11 @@
+//from https://auth0.com/docs/quickstart/spa/react/02-calling-an-api
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
 
+const authConfig = {
+  domain: "nsena.auth0.com",
+  audience: "localhost:3000/api/posts"
+};
 //express-jwt
 //connect/express middleware that validates a JsonWebToken (JWT) and set the req.user with the attributes
 //passes request, header, and payload to jwksRsa
@@ -12,11 +17,11 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://nsena.auth0.com/.well-known/jwks.json`
+    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
   }),
   // Validate the audience and the issuer.
-  audience: process.env.AUTH0_CLIENT_ID,
-  issuer: `https://nsena.auth0.com/`,
+  audience: authConfig.audience,
+  issuer: `https://${authConfig.domain}/`,
   algorithms: ["RS256"]
 });
 

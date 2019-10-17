@@ -86,7 +86,7 @@ class ControlledEditor extends Component {
     const accessToken = (async () => {
       await getTokenSilently()
         .then(token => {
-          console.log(`got a token: ${token}`);
+          console.log(`got a ${token.length} character long token: ${token}`);
           id
             ? //edit post
               axios
@@ -129,6 +129,9 @@ class ControlledEditor extends Component {
                 .then(res => {
                   if (res.data.message) {
                     console.log(`message: ${res.data.message}`);
+                  }
+                  if (res.data.user) {
+                    console.log("user", res.data.user);
                   }
                   if (res.data.newpost) {
                     console.log("successfully saved to DB");
