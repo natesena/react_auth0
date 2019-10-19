@@ -27,6 +27,9 @@ db.once("open", () => {
   console.log("DB connected");
 });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "frontend/build")));
+}
 //middleware
 app.use(helmet()); //configure headers for security
 app.use(bodyParser.json()); //change request data to JSON
@@ -63,16 +66,11 @@ app.patch("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.delete("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.use("/api/posts", PostRouter);
 
-//test code
 if (process.env.NODE_ENV === "production") {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
-  // Handle React routing, return all requests to React app
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "/frontend/build", "index.html"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
   });
 }
-//end test code
 
 app.listen(PORT, err => {
   console.log(err || `listening on PORT ${PORT}`);
