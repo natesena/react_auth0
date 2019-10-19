@@ -9,6 +9,7 @@ dotenv = require("dotenv");
 PostRouter = require("./Routes/PostRoutes.js");
 VisitorRouter = require("./Routes/VisitorRoutes.js");
 checkJwt = require("./Helpers/checkJWT.js");
+path = require("path"); //new 10/18
 
 dotenv.config();
 
@@ -29,6 +30,9 @@ db.once("open", () => {
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "frontend/build")));
+  app.get("/*", function(req, res) {
+    res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+  });
 }
 //middleware
 app.use(helmet()); //configure headers for security
@@ -65,12 +69,6 @@ app.post("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.patch("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.delete("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.use("/api/posts", PostRouter);
-
-if (process.env.NODE_ENV === "production") {
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  });
-}
 
 app.listen(PORT, err => {
   console.log(err || `listening on PORT ${PORT}`);
