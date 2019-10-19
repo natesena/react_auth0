@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3001; //PORT ENV given by Heroku
+const PORT = process.env.PORT || 5000; //PORT ENV given by Heroku
 bodyParser = require("body-parser");
 express = require("express");
 cors = require("cors");
