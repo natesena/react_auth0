@@ -83,7 +83,7 @@ class ControlledEditor extends Component {
 
     const { getTokenSilently } = this.context;
 
-    const accessToken = (async () => {
+    (async () => {
       await getTokenSilently()
         .then(token => {
           console.log(`got a ${token.length} character long token: ${token}`);
@@ -111,6 +111,9 @@ class ControlledEditor extends Component {
                     });
                   }
                 })
+                .catch(e => {
+                  console.log(`error with patch request: ${e}`);
+                })
             : //save as new post
               axios
                 .post(
@@ -127,6 +130,7 @@ class ControlledEditor extends Component {
                   }
                 )
                 .then(res => {
+                  console.log("res: ", res);
                   if (res.data.message) {
                     console.log(`message: ${res.data.message}`);
                   }
@@ -139,11 +143,16 @@ class ControlledEditor extends Component {
                       savedPostID: res.data.newpost._id
                     });
                   }
+                })
+                .catch(e => {
+                  console.log(`error trying to post new post: ${e}`);
                 });
         })
         .catch(err => {
-          console.log(`we got an error trying to get a token ${err}`);
-          // TODO send an alert that something went wrong authenticating the user
+          alert("Error trying to get post token");
+          console.log(
+            `we got an error trying to get a token to submit: ${err}`
+          );
         });
     })();
   }

@@ -30,7 +30,7 @@ function Navbar(props) {
         <Link to="/editor" className={"nav-button"}>
           Editor
         </Link>
-        <Link to="/profile">Profile</Link>
+        {isAuthenticated && <Link to="/profile">Profile</Link>}
       </div>
     </nav>
   );

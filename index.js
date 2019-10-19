@@ -32,45 +32,36 @@ app.use(helmet()); //configure headers for security
 app.use(bodyParser.json()); //change request data to JSON
 app.use(cors()); //Accept all requests
 app.use(morgan("combined")); //log http requests...
-let brrr = (req, res) => {
-  console.log(-"brrr===========================brrr");
+let approveAdmin = (req, res, next) => {
   if (!req.user) {
-    console.log("there is no request in the user");
-    res.send({ message: "failure", res: res, err: 401 });
+    res.send({
+      message: "ERROR: Failure to approve admin, no request in user",
+      err: 401
+    });
   } else {
     console.log("roles", req.user["http://www.nateapp.comroles"]);
-    if ("admin" in req.user["http://www.nateapp.comroles"]) {
-      //think "in" in javascript is handled differently
-      res.send({ message: "success", user: req.user, roles: "admin" });
+    if (req.user["http://www.nateapp.comroles"].includes("admin")) {
+      // res.send({ message: "success", user: req.user, roles: "admin" });
+      console.log("Admin privileges granted for request");
       // continue
+      next();
+    } else {
+      console.log("ACCESS DENIED");
+      res.send({
+        message:
+          "Error: Failere to approve admin, jwt authorized, but not admin user",
+        user: req.user,
+        roles: req.user["http://www.nateapp.comroles"]
+      });
     }
-    res.send({
-      message: "jwt authorized, but not admin user",
-      user: req.user,
-      roles: req.user["http://www.nateapp.comroles"]
-    });
   }
 };
-app.all("/", brrr);
+//app.all("/", approveAdmin);
 app.use("/api/visitors", VisitorRouter);
-app.post("/api/posts", checkJwt, brrr);
-app.patch("/api/posts", checkJwt, brrr);
-app.delete("/api/posts", checkJwt, brrr);
+app.post("/api/posts", checkJwt, approveAdmin, PostRouter);
+app.patch("/api/posts", checkJwt, approveAdmin, PostRouter);
+app.delete("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.use("/api/posts", PostRouter);
-
-//Check JWT before you can post
-// app.post('/post', checkJwt, (req,res)=>{
-//     const {title, body} = req.body
-//     const newQuestion = {
-//         id: questions.length + 1,
-//         author: req.user.name,//If logged in with JWT this will have a username
-//         title,
-//         description,
-//         answers: []
-//     }
-//     questions.push(newQuestion)
-//     res.status(200).send
-// })
 
 app.listen(PORT, err => {
   console.log(err || `listening on PORT ${PORT}`);

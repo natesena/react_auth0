@@ -16,11 +16,10 @@ window.addEventListener("load", () => {
     scope: "openid profile email app_metadata" //need to ask for app_metadata to get it
   })
     .then(auth0 => {
-      console.log(`we got an auth0 Context: ${auth0} `);
-      //this.auth0client = auth0
+      console.log(`Auth0 Context Received: ${auth0} `);
     })
     .catch(err => {
-      console.log(`got an error instead of an auth0 context`);
+      console.log(`ERROR: Auth Context not created on app startup`);
     });
 });
 
