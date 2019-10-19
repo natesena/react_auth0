@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001; //PORT ENV given by Heroku
 bodyParser = require("body-parser");
 express = require("express");
 cors = require("cors");
@@ -62,6 +62,17 @@ app.post("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.patch("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.delete("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.use("/api/posts", PostRouter);
+
+//test code
+if (process.env.NODE_ENV === "production") {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, "frontend/build")));
+  // Handle React routing, return all requests to React app
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+  });
+}
+//end test code
 
 app.listen(PORT, err => {
   console.log(err || `listening on PORT ${PORT}`);
