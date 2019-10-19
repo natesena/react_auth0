@@ -18,7 +18,9 @@ function Navbar(props) {
         {!isAuthenticated && (
           <button
             onClick={() =>
-              loginWithRedirect({ redirect_uri: "http://localhost:3000/" })
+              loginWithRedirect({
+                redirect_uri: "https://node-react-auth0-draftjs.herokuapp.com/"
+              })
             }
           >
             Log in

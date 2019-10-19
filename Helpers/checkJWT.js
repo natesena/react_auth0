@@ -8,7 +8,7 @@ const jwksRsa = require("jwks-rsa");
 
 const authConfig = {
   domain: "nsena.auth0.com",
-  audience: "localhost:3000/api/posts"
+  audience: "https://node-react-auth0-draftjs.herokuapp.com/api/posts"
 };
 
 // Create middleware for checking the JWT

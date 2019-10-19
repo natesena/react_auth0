@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
   createAuth0Client({
     domain: "nsena.auth0.com",
     client_id: "eGMRjroJZpn8MlzshPcSXhqpQAK8iGlp",
-    redirect_uri: "http://localhost:3000/callback",
+    redirect_uri: "https://node-react-auth0-draftjs.herokuapp.com/callback",
     scope: "openid profile email app_metadata" //need to ask for app_metadata to get it
   })
     .then(auth0 => {
