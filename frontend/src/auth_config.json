@@ -1,5 +1,5 @@
 {
   "domain": "nsena.auth0.com",
   "clientId": "eGMRjroJZpn8MlzshPcSXhqpQAK8iGlp",
-  "audience": "https://node-react-auth0-draftjs.herokuapp.com/api/posts"
+  "audience": "localhost:3000/api/posts"
 }
