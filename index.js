@@ -57,11 +57,15 @@ let approveAdmin = (req, res, next) => {
     }
   }
 };
+let announceDelete = (req, res, next) => {
+  console.log("we trying to delete");
+  next();
+};
 //app.all("/", approveAdmin);
 app.use("/api/visitors", VisitorRouter);
 app.post("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.patch("/api/posts", checkJwt, approveAdmin, PostRouter);
-app.delete("/api/posts", checkJwt, approveAdmin, PostRouter);
+app.delete("/api/posts", announceDelete, checkJwt, approveAdmin, PostRouter);
 app.use("/api/posts", PostRouter);
 
 if (process.env.NODE_ENV === "production") {
