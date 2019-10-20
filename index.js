@@ -28,12 +28,6 @@ db.once("open", () => {
   console.log("DB connected");
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend/build")));
-  app.get("/*", function(req, res) {
-    res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
-  });
-}
 //middleware
 app.use(helmet()); //configure headers for security
 app.use(bodyParser.json()); //change request data to JSON
@@ -69,6 +63,13 @@ app.post("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.patch("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.delete("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.use("/api/posts", PostRouter);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "frontend/build")));
+  app.get("/*", function(req, res) {
+    res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+  });
+}
 
 app.listen(PORT, err => {
   console.log(err || `listening on PORT ${PORT}`);
