@@ -1,26 +1,39 @@
-import React from 'react'
-import auth0Client from '../Auth/Auth.js';
+import React from "react";
+import { Auth0Context } from "../react-auth0-wrapper";
 
-
-class Login extends React.Component{
-    render(){
-        return(
-            
-                <div className={'body-liner'}>
-                    <div className={'window-table'}>
-                        <div className={'table-center-row'}>
-                            <h1 className={'text-center'}>Login Below</h1>
-                            <p>No extended functionality exists for users unless you are Nathaniel Sena, the site administrator</p>
-                            {
-                                !auth0Client.isAuthenticated() &&
-                                <button className={'login-button'} onClick={auth0Client.signIn} >Sign In</button>
-                            }
-                        </div>
-                    </div>
-                    
-                </div>
-        )
-    }
+class Login extends React.Component {
+  static contextType = Auth0Context;
+  render() {
+    const { loginWithRedirect, isAuthenticated } = this.context;
+    return (
+      <div className={"body-liner"}>
+        <div className={"window-table"}>
+          <div className={"table-center-row"}>
+            <h1 className={"text-center"}>Login Below</h1>
+            <p>
+              No extended functionality exists for users unless you are
+              Nathaniel Sena, the site administrator
+            </p>
+            {!isAuthenticated && (
+              <button
+                className={"login-button"}
+                onClick={() => {
+                  loginWithRedirect({
+                    redirect_uri:
+                      window.location.hostname === "localhost"
+                        ? "http://localhost:3000"
+                        : "https://node-react-auth0-draftjs.herokuapp.com/"
+                  });
+                }}
+              >
+                Sign In
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Login
+export default Login;

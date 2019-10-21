@@ -62,7 +62,6 @@ class ControlledEditor extends Component {
     });
   };
 
-  //const { isAuthenticated, loginWithRedirect, logout } = this.context;
   savePost() {
     let titleData = JSON.stringify(
       convertToRaw(this.state.titleEditorState.getCurrentContent())
