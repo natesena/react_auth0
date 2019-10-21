@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PreviewPost from "../components/PreviewPost.js";
@@ -41,7 +41,13 @@ class Base extends React.Component {
                 ? this.setState({
                     posts: [...this.state.posts.filter(post => post._id !== id)]
                   })
-                : console.log("There was an error handling post removal");
+                : (function() {
+                    if (res.data.message) {
+                      console.log(res.data.message);
+                    } else {
+                      console.log("There was an error handling post removal");
+                    }
+                  })();
             });
         })
         .catch(e => {
@@ -50,6 +56,7 @@ class Base extends React.Component {
     })();
   }
   render() {
+    const { user } = this.context;
     return (
       <div className="body-liner">
         {this.state.posts.length >= 1 ? (
@@ -63,18 +70,23 @@ class Base extends React.Component {
                   preview_bes={post.previewBody}
                 />
                 <div className={"preview-post-buttons-container"}>
-                  <button
-                    className={"preview-post-button"}
-                    onClick={this.deletePost.bind(this, post._id)}
-                  >
-                    Delete
-                  </button>
-                  <Link
-                    className={"preview-post-button"}
-                    to={`/posts/${post._id}/edit`}
-                  >
-                    Edit
-                  </Link>
+                  {user &&
+                    user["http://www.nateapp.comroles"].includes("admin") && (
+                      <Fragment>
+                        <button
+                          className={"preview-post-button"}
+                          onClick={this.deletePost.bind(this, post._id)}
+                        >
+                          Delete
+                        </button>
+                        <Link
+                          className={"preview-post-button"}
+                          to={`/posts/${post._id}/edit`}
+                        >
+                          Edit
+                        </Link>
+                      </Fragment>
+                    )}
                 </div>
               </div>
             ))}

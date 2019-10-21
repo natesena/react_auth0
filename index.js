@@ -50,7 +50,7 @@ let approveAdmin = (req, res, next) => {
       console.log("ACCESS DENIED");
       res.send({
         message:
-          "Error: Failere to approve admin, jwt authorized, but not admin user",
+          "Error: Failure to approve admin, jwt authorized, but not admin user",
         user: req.user,
         roles: req.user["http://www.nateapp.comroles"]
       });
