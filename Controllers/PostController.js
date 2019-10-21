@@ -42,7 +42,7 @@ module.exports = {
     });
   },
   edit: (req, res) => {
-    console.log("We in the edit route ya boy");
+    console.log("\n Edit Route Hit");
     Post.findByIdAndUpdate(req.params.id, req.body, (err, updatedPost) => {
       if (err) {
         res.send({ message: "failure", err: err.code });

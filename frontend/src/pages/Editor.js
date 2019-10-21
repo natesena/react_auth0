@@ -93,13 +93,11 @@ class ControlledEditor extends Component {
                 .patch(
                   `/api/Posts/${id}`,
                   {
-                    //data argument
                     title: titleData,
                     previewBody: previewData,
                     body: bodyData
                   },
                   {
-                    //presume this is a header
                     headers: { Authorization: "Bearer " + token }
                   }
                 )
@@ -112,7 +110,7 @@ class ControlledEditor extends Component {
                   }
                 })
                 .catch(e => {
-                  console.log(`error with patch request: ${e}`);
+                  console.log(`ERROR: Patch request failure: ${e}`);
                 })
             : //save as new post
               axios

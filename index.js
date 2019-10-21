@@ -61,12 +61,16 @@ let announceDelete = (req, res, next) => {
   console.log("we trying to delete");
   next();
 };
+let readRequest = (req, res, next) => {
+  console.log("req method: ", req.method);
+  next();
+};
 //app.all("/", approveAdmin);
 app.use("/api/visitors", VisitorRouter);
 app.post("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.patch("/api/posts", checkJwt, approveAdmin, PostRouter);
 app.delete("/api/posts", announceDelete, checkJwt, approveAdmin, PostRouter);
-app.use("/api/posts", PostRouter);
+app.use("/api/posts", readRequest, PostRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "frontend/build")));

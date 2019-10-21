@@ -2,9 +2,12 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PreviewPost from "../components/PreviewPost.js";
+import { Auth0Context } from "../react-auth0-wrapper";
 // import Post from '../components/Post.js'
 
 class Base extends React.Component {
+  static contextType = Auth0Context;
+
   state = {
     posts: []
   };
@@ -14,21 +17,37 @@ class Base extends React.Component {
     axios.get("/api/posts").then(res => {
       console.log("res: ", res);
       if (res.data.Posts) {
+        console.log("# posts", res.data.Posts.length);
         this.setState({
           posts: [...res.data.Posts]
         });
+      } else {
+        console.log("no posts");
       }
     });
   }
 
   deletePost(id) {
-    axios.delete(`/api/posts/${id}`).then(res => {
-      res.data.Post
-        ? this.setState({
-            posts: [...this.state.posts.filter(post => post._id !== id)]
-          })
-        : console.log("There was an error handling post removal");
-    });
+    const { getTokenSilently } = this.context;
+    (async () => {
+      await getTokenSilently()
+        .then(token => {
+          axios
+            .delete(`/api/posts/${id}`, {
+              headers: { Authorization: "Bearer " + token }
+            })
+            .then(res => {
+              res.data.Post
+                ? this.setState({
+                    posts: [...this.state.posts.filter(post => post._id !== id)]
+                  })
+                : console.log("There was an error handling post removal");
+            });
+        })
+        .catch(e => {
+          console.log("ERROR: No token was received, user must log in");
+        });
+    })();
   }
   render() {
     return (

@@ -19,7 +19,10 @@ function Navbar(props) {
           <button
             onClick={() =>
               loginWithRedirect({
-                redirect_uri: "https://node-react-auth0-draftjs.herokuapp.com/"
+                redirect_uri:
+                  window.location.hostname === "localhost"
+                    ? "http://localhost:3000"
+                    : "https://node-react-auth0-draftjs.herokuapp.com/"
               })
             }
           >
