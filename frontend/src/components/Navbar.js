@@ -6,7 +6,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useAuth0 } from "../react-auth0-wrapper";
 
 function Navbar(props) {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   return (
     <nav className="nav" style={{ overflow: "hidden" }}>
@@ -15,7 +15,7 @@ function Navbar(props) {
       </Link>
       <FontAwesomeIcon icon={faBars} className={"nav-hamburger"} />
       <div className={"nav-options"}>
-        {!isAuthenticated && (
+        {/* {!isAuthenticated && (
           <button
             onClick={() =>
               loginWithRedirect({
@@ -30,11 +30,14 @@ function Navbar(props) {
           </button>
         )}
 
-        {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+        {isAuthenticated && <button onClick={() => logout()}>Log out</button>} */}
+        {isAuthenticated &&
+          user["http://www.nateapp.comroles"].includes("admin") && (
+            <Link to="/editor" className={"nav-button"}>
+              Editor
+            </Link>
+          )}
 
-        <Link to="/editor" className={"nav-button"}>
-          Editor
-        </Link>
         {isAuthenticated && <Link to="/profile">Profile</Link>}
       </div>
     </nav>
