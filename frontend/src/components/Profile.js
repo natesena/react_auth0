@@ -11,8 +11,8 @@ const Profile = () => {
   return (
     <div>
       <Fragment>
-        <img src={user.picture} alt="Profile" />
-        <h2>{user.name}</h2>
+        <img src={user.picture} alt="Profile" className={"profile-picture"} />
+        <h2 className={"profile-name"}>{user.name}</h2>
         <p>{user.email}</p>
         <code>{JSON.stringify(user, null, 2)}</code>
       </Fragment>

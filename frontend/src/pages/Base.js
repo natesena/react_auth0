@@ -14,17 +14,22 @@ class Base extends React.Component {
 
   componentDidMount() {
     console.log("fetching posts");
-    axios.get("/api/posts").then(res => {
-      console.log("res: ", res);
-      if (res.data.Posts) {
-        console.log("# posts", res.data.Posts.length);
-        this.setState({
-          posts: [...res.data.Posts]
-        });
-      } else {
-        console.log("no posts");
-      }
-    });
+    axios
+      .get("/api/posts")
+      .then(res => {
+        console.log("res: ", res);
+        if (res.data.Posts) {
+          console.log("# posts", res.data.Posts.length);
+          this.setState({
+            posts: [...res.data.Posts]
+          });
+        } else {
+          console.log("no posts");
+        }
+      })
+      .catch(e => {
+        console.log("Error fetching posts: ", e);
+      });
   }
 
   deletePost(id) {
@@ -58,7 +63,7 @@ class Base extends React.Component {
   render() {
     const { user } = this.context;
     return (
-      <div className="body-liner">
+      <div className={this.state.posts.length > 0 ? "body-liner" : ""}>
         {this.state.posts.length >= 1 ? (
           <div>
             <h1>Posts</h1>
@@ -92,7 +97,9 @@ class Base extends React.Component {
             ))}
           </div>
         ) : (
-          <h1>No Posts Yet</h1>
+          <div className={"loading-spinner-fullscreen"}>
+            <div class="lds-dual-ring"></div>
+          </div>
         )}
       </div>
     );

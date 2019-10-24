@@ -11,7 +11,14 @@
     height: 100vh;
     position: relative;
 }
+.nav-sidebar{
+    width: 100vw;
+    height: 100vh;
+    background-color: blue;
+    float: right
+}
 .nav {
+    float: right;
     background-color: transparent;
     color: white;
     text-shadow: 0 0 2px rgba(50,50,50,0.5);
@@ -22,12 +29,15 @@
     box-sizing: border-box;
     @media only screen and (max-width: @phone){
         padding: 10px 10px;
+        height: 30px
     }
     @media only screen and (min-width: @phone) and (max-width: @tablet){
-        padding: 10px 
+        padding: 10px;
+        height: 40px
     }
     @media only screen and (min-width: @tablet){
-        padding: 20px 30px
+        padding: 20px 30px;
+        height: 50px
     }
 }
 .body{
@@ -39,13 +49,14 @@
 }
 
 .body-liner{
+    box-sizing: border-box;
     @media only screen and (max-width: @phone){
         margin-top: 40px;
         padding: 0 10px;
     }
     @media only screen and (min-width: @phone) and (max-width: @tablet){
         margin-top: 50px;
-        padding: 0 20px 
+        padding: 0 20px
     }
     @media only screen and (min-width: @tablet){
         margin-top: 60px;
@@ -64,6 +75,7 @@
 }
 
 .editor-action-button{
+    box-sizing: border-box;
     cursor: pointer;
     background-color: @main-color;
     padding: 3px 5px;
@@ -103,6 +115,7 @@
     }
 }
 .nav-button{
+    box-sizing: border-box;
     float:right;
     font-size: 12px;
     cursor: pointer;
@@ -138,7 +151,7 @@
 .preview-post{
     box-sizing: border-box;
     padding: 10px;
-    
+
     border: 1px solid rgba(100,100,100,0.1);
     border-radius: 10px;
     box-shadow: 2px 2px 2px rgba(50,50,50,0.5);
@@ -159,7 +172,7 @@
     text-decoration: none
 }
 .preview-post-title{
-    margin: 5px 0 
+    margin: 5px 0
 }
 .preview-post-pbody{
     margin: 0
@@ -169,6 +182,7 @@
     margin: 5px 0 0 0
 }
 .preview-post-button{
+    box-sizing: border-box;
     font-size: 12px;
     text-decoration: none;
     float: right;
@@ -193,6 +207,7 @@
 }
 
 [class$="editor-container"] {
+    box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
     @media only screen and (max-width: @phone){
@@ -212,6 +227,7 @@
     text-align: center
 }
 .login-button{
+    box-sizing: border-box;
     margin: 0 auto;
     border: 1px solid black;
     color: black;
@@ -229,6 +245,81 @@
     color: blue;
     text-align: center
 }
+.base-post-loading{
+    text-align: center;
+}
+.post-title{
+    text-align: center;
+    margin: 30px auto;
+}
+.post-body{
+    text-align: center;
+    margin: 0 auto;
+}
+.post-content-container{
+    overflow: scroll;
+    box-sizing: border-box;
+    @media only screen and (max-width: @phone){
+        padding: 30px
+     }
+     @media only screen and (min-width: @phone) and (max-width: @tablet){
+         padding: 40px
+     }
+     @media only screen and (min-width: @tablet){
+         padding: 50px
+     }
+}
+.post-show{
+    width: 80%;
+    max-width: 1000px;
+}
+.loading-spinner-fullscreen{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lds-dual-ring {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #000;
+    border-color: #000 transparent #000 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .profile-picture{
 
-
-
+    @media only screen and (max-width: @phone){
+        width: 200px;
+        height: 200px;
+     }
+     @media only screen and (min-width: @phone) and (max-width: @tablet){
+        width: 300px;
+        height: 300px;
+     }
+     @media only screen and (min-width: @tablet){
+        width: 400px;
+        height: 400px;
+     }
+     text-align: center;
+      margin: 20px auto;
+      border-radius: 50%;
+      box-shadow: 4px 4px 5px rgba(50,50,50,1);
+  }
