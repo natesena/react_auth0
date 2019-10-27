@@ -1,3 +1,8 @@
-This is meant to be a starter package for someone trying to build a react app with social authentication.
+This is meant to be a starter package for someone trying to build a blog with social authentication.
 
-how to run less converter
+Setup
+1. Clone the repository
+2. `npm install` inside the repository
+3. `cd frontend && npm install`
+4. Create a .env file
+5. run `npm run dev` from within the parent directory

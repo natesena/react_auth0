@@ -21,6 +21,7 @@ function App() {
     return <div>Loading...</div>;
   }
   return (
+    /* position relative, height: 100vh */
     <div className="App">
       <Navbar />
       <div className="body">
