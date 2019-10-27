@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/App.css";
 import "./css/WYSIWYG.css";
 import { Route } from "react-router-dom";
@@ -16,6 +16,7 @@ import { useAuth0 } from "./react-auth0-wrapper";
 
 function App() {
   const { loading } = useAuth0();
+  const [blur, toggleBlur] = useState(false);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -23,8 +24,12 @@ function App() {
   return (
     /* position relative, height: 100vh */
     <div className="App">
-      <Navbar />
-      <div className="body">
+      <Navbar
+        activateDropdownBlur={dropdownActive => {
+          toggleBlur(dropdownActive);
+        }}
+      />
+      <div className={`body${blur ? " blur" : ""}`}>
         {/* Here is where we want to use <Route> and <Switches> */}
         <Route exact path="/" component={Welcome} />
         <Route path="/profile" component={Profile} />

@@ -22,8 +22,9 @@ function Navbar(props) {
         <FontAwesomeIcon
           icon={faBars}
           className={"nav-hamburger"}
-          style={{ filter: "drop-shadow(1px 1px rgba(0,0,0,1))" }}
+          style={{ filter: "drop-shadow(1px 1px rgba(200,200,200,1))" }}
           onClick={() => {
+            props.activateDropdownBlur(!show);
             slideNav(!show);
           }}
         />
@@ -46,6 +47,8 @@ function Navbar(props) {
       <Sidebar
         show={show}
         closeDropdown={visible => {
+          console.log("visible: ", visible);
+          props.activateDropdownBlur(visible);
           slideNav(visible);
         }}
       />

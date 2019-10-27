@@ -11,40 +11,42 @@ function Sidebar(props) {
 
   return (
     <div className={navClass}>
-      <Link
-        to={"/"}
-        className={"sidebar-link"}
-        onClick={() => {
-          props.closeDropdown(false);
-        }}
-      >
-        Home
-      </Link>
-      <Link
-        to={"/posts"}
-        className={"sidebar-link"}
-        onClick={() => {
-          props.closeDropdown(false);
-        }}
-      >
-        Posts
-      </Link>
-      <Link
-        to={"/editor"}
-        className={"sidebar-link"}
-        onClick={() => {
-          props.closeDropdown(false);
-        }}
-      >
-        Editor
-      </Link>
-      <div
-        className={"sidebar-close"}
-        onClick={() => {
-          props.closeDropdown(false);
-        }}
-      >
-        X
+      <div className={"sidebar-links-container"}>
+        <Link
+          to={"/"}
+          className={"sidebar-link"}
+          onClick={() => {
+            props.closeDropdown(false);
+          }}
+        >
+          Home
+        </Link>
+        <Link
+          to={"/posts"}
+          className={"sidebar-link"}
+          onClick={() => {
+            props.closeDropdown(false);
+          }}
+        >
+          Posts
+        </Link>
+        <Link
+          to={"/editor"}
+          className={"sidebar-link"}
+          onClick={() => {
+            props.closeDropdown(false);
+          }}
+        >
+          Editor
+        </Link>
+        <div
+          className={"sidebar-close"}
+          onClick={() => {
+            props.closeDropdown(false);
+          }}
+        >
+          X
+        </div>
       </div>
     </div>
   );

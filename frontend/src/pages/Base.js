@@ -65,36 +65,38 @@ class Base extends React.Component {
     return (
       <div className={this.state.posts.length > 0 ? "body-liner" : ""}>
         {this.state.posts.length >= 1 ? (
-          <div>
-            <h1>Posts</h1>
-            {this.state.posts.map(post => (
-              <div className="preview-post" key={post._id}>
-                <PreviewPost
-                  id={post._id}
-                  title_es={post.title}
-                  preview_bes={post.previewBody}
-                />
-                <div className={"preview-post-buttons-container"}>
-                  {user &&
-                    user["http://www.nateapp.comroles"].includes("admin") && (
-                      <Fragment>
-                        <button
-                          className={"preview-post-button"}
-                          onClick={this.deletePost.bind(this, post._id)}
-                        >
-                          Delete
-                        </button>
-                        <Link
-                          className={"preview-post-button"}
-                          to={`/posts/${post._id}/edit`}
-                        >
-                          Edit
-                        </Link>
-                      </Fragment>
-                    )}
+          <div className={"posts-body-container"}>
+            <h1 className={"posts-title"}>Posts</h1>
+            <div className="posts-container">
+              {this.state.posts.map(post => (
+                <div className="preview-post" key={post._id}>
+                  <PreviewPost
+                    id={post._id}
+                    title_es={post.title}
+                    preview_bes={post.previewBody}
+                  />
+                  <div className={"preview-post-buttons-container"}>
+                    {user &&
+                      user["http://www.nateapp.comroles"].includes("admin") && (
+                        <Fragment>
+                          <button
+                            className={"preview-post-button"}
+                            onClick={this.deletePost.bind(this, post._id)}
+                          >
+                            Delete
+                          </button>
+                          <Link
+                            className={"preview-post-button"}
+                            to={`/posts/${post._id}/edit`}
+                          >
+                            Edit
+                          </Link>
+                        </Fragment>
+                      )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         ) : (
           <div className={"loading-spinner-fullscreen"}>

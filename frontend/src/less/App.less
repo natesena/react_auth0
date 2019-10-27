@@ -10,13 +10,16 @@
 .App{
     height: 100vh;
     position: relative;
-    overflow-x: hidden
+}
+.blur{
+    filter: blur(3px);
 }
 .nav{
     position: relative;
 }
 .nav-sidebar{
-    background: transparent;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2) 100%);
     position: absolute;
     color: white;
     box-sizing: border-box;
@@ -42,6 +45,9 @@
         padding: 20px 30px;
         display: none
     }
+}
+.sidebar-links-container{
+
 }
 .nav-sidebar-show{
     transform: translate(0, 100vh);
@@ -150,6 +156,7 @@
 }
 .nav-hamburger{
     float:right;
+    filter: "drop-shadow(1px 1px rgba(0,0,0,1))";
     @media only screen and (max-width: @phone){
         display:block;
     }
@@ -204,25 +211,60 @@
     color: white;
     background-color: transparent
 }
-
-.preview-post{
-    box-sizing: border-box;
+.posts-title{
     padding: 10px;
-
-    border: 1px solid rgba(100,100,100,0.1);
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px rgba(50,50,50,0.5);
     @media only screen and (max-width: @phone){
-        margin: 10px auto;
+        padding-left: 20px
     }
     @media only screen and (min-width: @phone) and (max-width: @tablet){
-        margin: 15px auto;
+        padding-left: 60px;
+
+    }
+    @media only screen and (min-width: @tablet){
+
+        padding-left: 60px;
+
+    }
+}
+.preview-post:first-of-type{
+    border-radius: 10px 10px 0 0;
+    padding: 0 20px 30px 20px
+}
+.preview-post:last-of-type{
+    box-shadow: none
+}
+.posts-container{
+    position: relative;
+}
+.preview-post{
+    padding: 30px 20px;
+    margin: 1px auto;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0px 1px 1px -1px rgba(200,200,200,1);
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    @media only screen and (max-width: @phone){
+
+    }
+    @media only screen and (min-width: @phone) and (max-width: @tablet){
+
         max-width: 90%;
     }
     @media only screen and (min-width: @tablet){
-        margin: 20px auto;
+
         max-width: 90%;
     }
+}
+.preview-post:hover{
+    box-shadow: 1px 2px 3px rgba(175,175,175,1);
+    transform: translate(1px, -1px);
+    border-radius: 10px;
+
 }
 
 .preview-post-title-link{
@@ -327,8 +369,17 @@
      }
 }
 .post-show{
-    width: 80%;
+    margin: 0 auto;
     max-width: 1000px;
+    @media only screen and (max-width: @phone){
+        width: 100%;
+     }
+     @media only screen and (min-width: @phone) and (max-width: @tablet){
+        width: 65%;
+     }
+     @media only screen and (min-width: @tablet){
+        width: 65%;
+     }
 }
 .loading-spinner-fullscreen{
     height: 100vh;
@@ -351,7 +402,11 @@
     border-radius: 50%;
     border: 5px solid #000;
     border-color: #000 transparent #000 transparent;
-    animation: lds-dual-ring 1.2s linear infinite;
+    -webkit-animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
+	-moz-animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
+	-ms-animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
+	-o-animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
+	animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
   }
   @keyframes lds-dual-ring {
     0% {
@@ -361,6 +416,44 @@
       transform: rotate(360deg);
     }
   }
+  @keyframes rainbow{
+    100%,0%{
+        border: rgb(255,0,0);
+    }
+    8%{
+        border: rgb(255,127,0);
+    }
+    16%{
+        border: rgb(255,255,0);
+    }
+    25%{
+        border: rgb(127,255,0);
+    }
+    33%{
+        border: rgb(0,255,0);
+    }
+    41%{
+        border: rgb(0,255,127);
+    }
+    50%{
+        border: rgb(0,255,255);
+    }
+    58%{
+        border: rgb(0,127,255);
+    }
+    66%{
+        border: rgb(0,0,255);
+    }
+    75%{
+        border: rgb(127,0,255);
+    }
+    83%{
+        border: rgb(255,0,255);
+    }
+    91%{
+        border: rgb(255,0,127);
+    }
+}
   .profile-picture{
 
     @media only screen and (max-width: @phone){
