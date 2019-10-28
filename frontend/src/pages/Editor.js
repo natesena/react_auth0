@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-// import { Redirect} from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-// import { useAuth0 } from "../react-auth0-wrapper";
 import { Auth0Context } from "../react-auth0-wrapper";
 
 class ControlledEditor extends Component {
@@ -12,6 +11,7 @@ class ControlledEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      postSaved: false,
       savedPostID: false,
       previewEditorState: EditorState.createEmpty(),
       titleEditorState: EditorState.createEmpty(),
@@ -42,21 +42,18 @@ class ControlledEditor extends Component {
     }
   }
 
-  onEditorStateChange: Function = editorState => {
-    // Need to make this know what editor we are working with
+  onEditorStateChange = editorState => {
     this.setState({
       editorState
     });
   };
 
-  onTitleEditorStateChange: Function = titleEditorState => {
-    // Need to make this know what editor we are working with
+  onTitleEditorStateChange = titleEditorState => {
     this.setState({
       titleEditorState
     });
   };
-  onPreviewEditorStateChange: Function = previewEditorState => {
-    // Need to make this know what editor we are working with
+  onPreviewEditorStateChange = previewEditorState => {
     this.setState({
       previewEditorState
     });
@@ -158,9 +155,7 @@ class ControlledEditor extends Component {
     const { editorState, previewEditorState, titleEditorState } = this.state;
     return (
       <div className="body-liner">
-        {
-          // !this.state.savedPostID
-          // ? (
+        {!this.state.savedPostID ? (
           <div className="post-creation-container">
             <div className="title-editor-container">
               <h1>Title</h1>
@@ -192,9 +187,9 @@ class ControlledEditor extends Component {
               </button>
             </div>
           </div>
-          // )
-          // : <Redirect to={`/posts/${this.state.savedPostID}`}/>
-        }
+        ) : (
+          <Redirect to={`/posts/${this.state.savedPostID}`} />
+        )}
       </div>
     );
   }

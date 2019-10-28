@@ -10,7 +10,7 @@
 }
 .nav-sidebar {
   background: #ffffff;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2) 100%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 100%);
   position: absolute;
   color: white;
   box-sizing: border-box;
@@ -258,6 +258,9 @@
 }
 .posts-container {
   position: relative;
+}
+.preview-post-wrapper {
+  overflow: hidden;
 }
 .preview-post {
   padding: 30px 20px;
