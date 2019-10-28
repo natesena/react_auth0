@@ -16,7 +16,16 @@ function Navbar(props) {
   return (
     <div className="nav">
       <nav className="nav-topbar">
-        <Link to="/posts" className="home-button">
+        <Link
+          to="/posts"
+          className="home-button"
+          onClick={() => {
+            props.activateDropdownBlur(false);
+            if (show) {
+              slideNav(!show);
+            }
+          }}
+        >
           NateSena
         </Link>
         <FontAwesomeIcon
