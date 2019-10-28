@@ -10,7 +10,7 @@
 }
 .nav-sidebar {
   background: #ffffff;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 100%);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.5) 100%);
   position: absolute;
   color: white;
   box-sizing: border-box;
@@ -47,21 +47,25 @@
   transform: translate(0, 100vh);
 }
 .sidebar-link {
-  box-shadow: 1px 1px 3px #000000;
+  filter: "drop-shadow(1px 1px rgba(0,0,0,1))";
+  text-shadow: 1px 1px 3px #4b4b4b;
+  font-weight: bold;
+  box-shadow: 1px 2px 3px rgba(100, 100, 100, 0.75), inset 0 2px 2px 1px rgba(220, 220, 220, 0.25);
   text-decoration: none;
   margin: 10px 0;
   display: block;
   box-sizing: border-box;
   padding: 20px;
-  background-color: white;
-  color: black;
+  background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
+  background-image: linear-gradient(top, #f4f1ee, #fff);
+  background-color: #ffffff;
+  color: white;
   border-radius: 10px;
   width: 100%;
   text-align: center;
 }
 .sidebar-close {
-  box-shadow: 1px 1px 3px #000000;
-  margin: 0 auto;
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +74,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  color: black;
+  color: white;
 }
 .nav-topbar {
   background-color: transparent;
@@ -109,6 +113,10 @@
   padding: 0;
   box-sizing: border-box;
   background-color: white;
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-property: all;
+  transition-property: all;
 }
 .body-liner {
   box-sizing: border-box;
