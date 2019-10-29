@@ -8,10 +8,12 @@ import Base from "./pages/Base.js";
 import Editor from "./pages/Editor.js";
 import ShowPost from "./pages/ShowPost.js";
 import Login from "./pages/Login.js";
+import About from "./pages/About";
 
 import Callback from "./components/Callback.js";
 import Navbar from "./components/Navbar.js";
 import Profile from "./components/Profile";
+
 import { useAuth0 } from "./react-auth0-wrapper";
 
 function App() {
@@ -33,6 +35,7 @@ function App() {
         {/* Here is where we want to use <Route> and <Switches> */}
         <Route exact path="/" component={Welcome} />
         <Route path="/profile" component={Profile} />
+        <Route path="/about" component={About} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/posts" component={Base} />
         {/* <Route path="/posts/:id/edit"  render={Editor} /> */}
