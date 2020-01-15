@@ -9,14 +9,30 @@ import config from "./auth_config.json";
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 window.addEventListener("load", () => {
+  //auth0 and openID connect in general requires a callback address to go upon successful signin
+  let callbackRedirectUrl;
+  switch (window.location.hostname) {
+    case "localhost":
+      // code block
+      callbackRedirectUrl = "http://localhost:3000/callback";
+      break;
+    case "node-react-auth0-draftjs.herokuapp.com":
+      // code block
+      callbackRedirectUrl =
+        "https://node-react-auth0-draftjs.herokuapp.com/callback";
+      break;
+    case "thenewcreative.space":
+      // code block
+      callbackRedirectUrl = "https://thenewcreative.space/callback";
+      break;
+  }
+  //Scope of auth0Client determines what kind of extra data is sent in requests
+  //In our case we need app_metadata to know if the user is privileged to write posts
   createAuth0Client({
     domain: "nsena.auth0.com",
     client_id: "eGMRjroJZpn8MlzshPcSXhqpQAK8iGlp",
-    redirect_uri:
-      window.location.hostname === "localhost"
-        ? "http://localhost:3000/callback"
-        : "https://node-react-auth0-draftjs.herokuapp.com/callback",
-    scope: "openid profile email app_metadata" //need to ask for app_metadata to get it
+    redirect_uri: callbackRedirectUrl,
+    scope: "openid profile email app_metadata"
   })
     .then(auth0 => {
       console.log(`Auth0 Context Received: ${auth0} `);
