@@ -1,0 +1,24 @@
+nathanielsena@Nathaniels-MacBook-Pro react_auth0 (more-styling) $ heroku domains:add thenewcreative.space
+Adding thenewcreative.space to ⬢ node-react-auth0-draftjs... done
+ ▸    Configure your app's DNS provider to point to the DNS Target
+ ▸    cellular-sorrel-vh4n0l49cia63c75d4mej8oo.herokudns.com.
+ ▸    For help, see https://devcenter.heroku.com/articles/custom-domains
+
+The domain thenewcreative.space has been enqueued for addition
+ ▸    Run heroku domains:wait 'thenewcreative.space' to wait
+ ▸    for completion
+nathanielsena@Nathaniels-MacBook-Pro react_auth0 (more-styling) $ heroku domains:add www.thenewcreative.space
+Adding www.thenewcreative.space to ⬢ node-react-auth0-draftjs... done
+ ▸    Configure your app's DNS provider to point to the DNS Target
+ ▸    globular-pandsy-nazh39527w1rze2dsvvxi8qj.herokudns.com.
+ ▸    For help, see https://devcenter.heroku.com/articles/custom-domains
+
+The domain www.thenewcreative.space has been enqueued for addition
+ ▸    Run heroku domains:wait 'www.thenewcreative.space' to
+ ▸    wait for completion
+nathanielsena@Nathaniels-MacBook-Pro react_auth0 (more-styling) $ heroku domains:wait 'thenewcreative.space'
+Waiting for thenewcreative.space... done
+nathanielsena@Nathaniels-MacBook-Pro react_auth0 (more-styling) $ heroku domains:wait 'www.thenewcreative.space'
+Waiting for www.thenewcreative.space... done
+nathanielsena@Nathaniels-MacBook-Pro react_auth0 (more-styling) $ code .
+nathanielsena@Nathaniels-MacBook-Pro react_auth0 (more-styling) $
