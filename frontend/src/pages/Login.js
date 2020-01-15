@@ -18,11 +18,26 @@ class Login extends React.Component {
               <button
                 className={"login-button"}
                 onClick={() => {
+                  let loginRedirectUrl;
+                  switch (window.location.hostname) {
+                    case "localhost":
+                      // code block
+                      loginRedirectUrl = "http://localhost:3000/callback";
+                      break;
+                    case "node-react-auth0-draftjs.herokuapp.com":
+                      // code block
+                      loginRedirectUrl =
+                        "https://node-react-auth0-draftjs.herokuapp.com/callback";
+                      break;
+                    case "thenewcreative.space":
+                      // code block
+                      loginRedirectUrl =
+                        "https://thenewcreative.space/callback";
+                      break;
+                  }
+                  console.log("Set loginRedirectUrl: ", loginRedirectUrl);
                   loginWithRedirect({
-                    redirect_uri:
-                      window.location.hostname === "localhost"
-                        ? "http://localhost:3000"
-                        : "https://node-react-auth0-draftjs.herokuapp.com/"
+                    redirect_uri: loginRedirectUrl
                   });
                 }}
               >

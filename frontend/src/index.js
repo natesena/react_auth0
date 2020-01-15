@@ -26,6 +26,7 @@ window.addEventListener("load", () => {
       callbackRedirectUrl = "https://thenewcreative.space/callback";
       break;
   }
+  console.log("Set callbackRedirectUrl: ", callbackRedirectUrl);
   //Scope of auth0Client determines what kind of extra data is sent in requests
   //In our case we need app_metadata to know if the user is privileged to write posts
   createAuth0Client({
