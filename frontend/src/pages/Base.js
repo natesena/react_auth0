@@ -13,7 +13,7 @@ class Base extends React.Component {
   };
 
   componentDidMount() {
-    console.log("fetching posts");
+    console.log("Fetching Posts");
     axios
       .get("/api/posts")
       .then(res => {
@@ -24,7 +24,7 @@ class Base extends React.Component {
             posts: [...res.data.Posts]
           });
         } else {
-          console.log("no posts");
+          console.log("No Posts");
         }
       })
       .catch(e => {

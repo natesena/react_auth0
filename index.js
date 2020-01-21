@@ -17,11 +17,10 @@ const app = express();
 
 MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/myapp";
 
-mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true })
-  .catch(err =>
-    console.log(`error connecting to DB: ${err}, MONGODB_URI: ${MONGODB_URI}`)
-  );
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }).catch(err => {
+  console.log(`Error connecting to DB: ${err}, MONGODB_URI: ${MONGODB_URI}`);
+  console.log("Might your user be the wrong user?");
+});
 
 let db = mongoose.connection;
 db.once("open", () => {
@@ -34,6 +33,7 @@ app.use(bodyParser.json()); //change request data to JSON
 app.use(cors()); //Accept all requests
 app.use(morgan("combined")); //log http requests...
 let approveAdmin = (req, res, next) => {
+  //middleware for ensuring that requests are done from my account
   if (!req.user) {
     res.send({
       message: "ERROR: Failure to approve admin, no request in user",
