@@ -26,20 +26,24 @@ window.addEventListener("load", () => {
       callbackRedirectUrl = "https://thenewcreative.space/callback";
       break;
   }
-  console.log("Set callbackRedirectUrl: ", callbackRedirectUrl);
+  //console.log("Set callbackRedirectUrl: ", callbackRedirectUrl);
+
   //Scope of auth0Client determines what kind of extra data is sent in requests
   //In our case we need app_metadata to know if the user is privileged to write posts
   createAuth0Client({
-    domain: "nsena.auth0.com",
     client_id: "eGMRjroJZpn8MlzshPcSXhqpQAK8iGlp",
+    display: "popup",
+    domain: "nsena.auth0.com",
+    max_age: `${60 * 60 * 24}`,
     redirect_uri: callbackRedirectUrl,
-    scope: "openid profile email app_metadata"
+    scope: "openid profile email app_metadata",
+    prompt: "login"
   })
     .then(auth0 => {
-      console.log(`Auth0 Context Received: ${auth0} `);
+      console.log(`Auth0 Context Received`);
     })
     .catch(err => {
-      console.log(`ERROR: Auth Context not created on app startup`);
+      console.log("Error Creating Auth0 Client: ", err);
     });
 });
 

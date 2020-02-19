@@ -39,6 +39,8 @@ function Navbar(props) {
         />
         <div className={"nav-options"}>
           {isAuthenticated &&
+            user &&
+            user["http://www.nateapp.comroles"] &&
             user["http://www.nateapp.comroles"].includes("admin") && (
               <Link to="/editor" className={"nav-button"}>
                 Editor

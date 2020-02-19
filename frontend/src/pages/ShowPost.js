@@ -1,9 +1,13 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertFromRaw } from "draft-js";
+import { Auth0Context } from "../react-auth0-wrapper";
 
 class ShowPost extends React.Component {
+  //below line sets the context for the component
+  static contextType = Auth0Context;
   state = {
     titleEditorState: EditorState.createEmpty(),
     editorState: EditorState.createEmpty()
@@ -19,12 +23,14 @@ class ShowPost extends React.Component {
       );
       this.setState({
         titleEditorState: newTitleEditorState,
-        editorState: newEditorState
+        editorState: newEditorState,
+        id: id
       });
     });
   }
 
   render() {
+    const { user } = this.context;
     return (
       <div className={"post-content-container"}>
         {this.state.titleEditorState && this.state.editorState ? (
@@ -43,6 +49,13 @@ class ShowPost extends React.Component {
                 readOnly
               />
             </div>
+            {user && user["http://www.nateapp.comroles"].includes("admin") && (
+              <div>
+                <Link to={`/posts/${this.state.id}/edit`}>
+                  <div>edit me</div>
+                </Link>
+              </div>
+            )}
           </div>
         ) : (
           <p>loading</p>

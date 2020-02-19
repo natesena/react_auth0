@@ -6,483 +6,487 @@
 @tablet: 720px;
 @desktop: 1080px;
 
-
-.App{
-    height: 100vh;
-    position: relative;
+.App {
+  height: 100vh;
+  position: relative;
 }
-.blur{
-    filter: blur(3px);
+.blur {
+  filter: blur(3px);
 }
-.nav{
-    position: relative;
+.nav {
+  position: relative;
 }
-.nav-sidebar{
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.5) 100%);
-    position: absolute;
-    color: white;
-    box-sizing: border-box;
-    z-index: 1;
-    margin: 0;
-    top: -100vh;
-    width: 100vw;
-    height: 100vh;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transform-origin: 0 100%;
-    transform-origin: 0 100%;
-    @media only screen and (max-width: @phone){
-        padding: 30px;
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-        padding: 10px;
-        display: none;
-    }
-    @media only screen and (min-width: @tablet){
-        padding: 20px 30px;
-        display: none
-    }
+.nav-sidebar {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  position: absolute;
+  color: white;
+  box-sizing: border-box;
+  z-index: 1;
+  margin: 0;
+  top: -100vh;
+  width: 100vw;
+  height: 100vh;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  @media only screen and (max-width: @phone) {
+    padding: 30px;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    padding: 10px;
+    display: none;
+  }
+  @media only screen and (min-width: @tablet) {
+    padding: 20px 30px;
+    display: none;
+  }
 }
-.sidebar-links-container{
-
+.sidebar-links-container {
 }
-.nav-sidebar-show{
-    transform: translate(0, 100vh);
+.nav-sidebar-show {
+  transform: translate(0, 100vh);
 }
-.sidebar-link{
-    filter: "drop-shadow(1px 1px rgba(0,0,0,1))";
-    text-shadow: 1px 1px 3px rgba(75,75,75,1);
-    font-weight: bold;
-    box-shadow: 1px 2px 3px rgba(100,100,100,0.75), inset 0 2px 2px 1px rgba(220,220,220,0.25);
-    text-decoration: none;
-    margin: 10px 0;
-    display: block;
-    box-sizing: border-box;
-    padding: 20px;
-    background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
-	background-image: linear-gradient(top, #f4f1ee, #fff);
-    background-color: rgba(255,255,255, 1);
-    color: white;
-    border-radius: 10px;
-    width: 100%;
-    text-align: center;
+.sidebar-link {
+  filter: "drop-shadow(1px 1px rgba(0,0,0,1))";
+  text-shadow: 1px 1px 3px rgba(75, 75, 75, 1);
+  font-weight: bold;
+  box-shadow: 1px 2px 3px rgba(100, 100, 100, 0.75),
+    inset 0 2px 2px 1px rgba(220, 220, 220, 0.25);
+  text-decoration: none;
+  margin: 10px 0;
+  display: block;
+  box-sizing: border-box;
+  padding: 20px;
+  background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
+  background-image: linear-gradient(top, #f4f1ee, #fff);
+  background-color: rgba(255, 255, 255, 1);
+  color: white;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
 }
-.sidebar-close{
-    margin: 10px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    color: white;
+.sidebar-close {
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: white;
 }
 .nav-topbar {
-    background-color: transparent;
-    color: white;
-    text-shadow: 0 0 2px rgba(50,50,50,0.5);
-    width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    box-sizing: border-box;
-    @media only screen and (max-width: @phone){
-        padding: 10px 10px;
-        height: 30px
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-        padding: 10px;
-        height: 40px
-    }
-    @media only screen and (min-width: @tablet){
-        padding: 20px 30px;
-        height: 50px
-    }
-}
-.body{
-    position: absolute;
-    top: 0;
-    z-index: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: white;
-    -webkit-transition-duration: 0.25s;
-    transition-duration: 0.25s;
-    -webkit-transition-property: all;
-    transition-property: all;
-}
-
-.body-liner{
-    box-sizing: border-box;
-    @media only screen and (max-width: @phone){
-        margin-top: 40px;
-        padding: 0 10px;
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-        margin-top: 50px;
-        padding: 0 20px
-    }
-    @media only screen and (min-width: @tablet){
-        margin-top: 60px;
-        padding: 0 30px
-    }
-}
-
-.post-creation-container{
-    height: 100%;
-}
-.title-editor-container, .editor-container, .preview-editor-container{
-    box-sizing: border-box;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 10px 5px;
-    width: 100%;
-}
-
-.editor-action-button{
-    box-sizing: border-box;
-    cursor: pointer;
-    background-color: @main-color;
-    padding: 3px 5px;
-    color: white;
-    border-radius: 3px;
-    border: 1px solid white;
-    float: right
-}
-
-.home-button{
-    cursor: pointer;
-    float: left;
-    text-decoration: none;
-    color: white
-}
-.nav-hamburger{
-    float:right;
-    filter: "drop-shadow(1px 1px rgba(0,0,0,1))";
-    @media only screen and (max-width: @phone){
-        display:block;
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-        display: none;
-    }
-    @media only screen and (min-width: @tablet){
-       display: none;
-    }
-}
-.nav-options{
-    @media only screen and (max-width: @phone){
-        display:none
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-        display: block
-    }
-    @media only screen and (min-width: @tablet){
-       display: block
-    }
-}
-.nav-button{
-    box-sizing: border-box;
-    float:right;
-    font-size: 12px;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-    text-shadow: 0 0 2px rgba(50,50,50,0.5);
-    background: transparent;
-    border: 1px solid white;
-    &:hover {
-        color: @main-color;
-        border: 1px solid @main-color;
-        background-color: white
-    }
-    @media only screen and (max-width: @phone){
-        padding: 2px 3px;
-        border-radius: 2px
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-        padding: 3px 5px;
-        border-radius: 3px
-    }
-    @media only screen and (min-width: @tablet){
-        margin: 0 2px;
-        padding: 3px 5px;
-        border-radius: 5px
-    }
-}
-.nav-signout{
-    color: white;
-    background-color: transparent
-}
-.posts-title{
+  background-color: transparent;
+  color: white;
+  text-shadow: 0 0 2px rgba(50, 50, 50, 0.5);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  box-sizing: border-box;
+  @media only screen and (max-width: @phone) {
+    padding: 10px 10px;
+    height: 30px;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
     padding: 10px;
-    @media only screen and (max-width: @phone){
-        padding-left: 20px
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-        padding-left: 60px;
-
-    }
-    @media only screen and (min-width: @tablet){
-
-        padding-left: 60px;
-
-    }
+    height: 40px;
+  }
+  @media only screen and (min-width: @tablet) {
+    padding: 20px 30px;
+    height: 50px;
+  }
 }
-.preview-post:first-of-type{
-    border-radius: 10px 10px 0 0;
-    padding: 0 20px 30px 20px
-}
-.preview-post:last-of-type{
-    box-shadow: none
-}
-.posts-container{
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto
-}
-.preview-post-wrapper{
-    overflow: hidden;
-}
-.preview-post{
-    padding: 30px 20px;
-    margin: 1px auto;
-    box-sizing: border-box;
-    background-color: white;
-    box-shadow: 0px 1px 1px -1px rgba(200,200,200,1);
-    -webkit-transition-duration: 0.25s;
-    transition-duration: 0.25s;
-    -webkit-transition-property: all;
-    transition-property: all;
-    -webkit-transform-origin: 0 100%;
-    transform-origin: 0 100%;
-    @media only screen and (max-width: @phone){
-
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-
-        max-width: 90%;
-    }
-    @media only screen and (min-width: @tablet){
-
-        max-width: 90%;
-    }
-}
-.preview-post:hover{
-    box-shadow: 1px 2px 3px rgba(175,175,175,1);
-    transform: translate(1px, -1px);
-    border-radius: 10px;
-
+.body {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: white;
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-property: all;
+  transition-property: all;
 }
 
-.preview-post-title-link{
-    text-decoration: none
+.body-liner {
+  box-sizing: border-box;
+  @media only screen and (max-width: @phone) {
+    margin-top: 40px;
+    padding: 0 10px;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    margin-top: 50px;
+    padding: 0 20px;
+  }
+  @media only screen and (min-width: @tablet) {
+    margin-top: 60px;
+    padding: 0 30px;
+  }
 }
-.preview-post-title{
-    margin: 5px 0
+
+.post-creation-container {
+  height: 100%;
 }
-.preview-post-pbody{
-    margin: 0
+.title-editor-container,
+.editor-container,
+.preview-editor-container {
+  box-sizing: border-box;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 10px 5px;
+  width: 100%;
 }
-.preview-post-buttons-container{
-    overflow: hidden;
-    margin: 5px 0 0 0
+
+.editor-action-button {
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: @main-color;
+  padding: 3px 5px;
+  color: white;
+  border-radius: 3px;
+  border: 1px solid white;
+  float: right;
 }
-.preview-post-button{
-    box-sizing: border-box;
-    font-size: 12px;
-    text-decoration: none;
-    float: right;
-    cursor: pointer;
+
+.home-button {
+  cursor: pointer;
+  float: left;
+  text-decoration: none;
+  color: white;
+}
+.nav-hamburger {
+  float: right;
+  filter: "drop-shadow(1px 1px rgba(0,0,0,1))";
+  @media only screen and (max-width: @phone) {
+    display: block;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    display: none;
+  }
+  @media only screen and (min-width: @tablet) {
+    display: none;
+  }
+}
+.nav-options {
+  @media only screen and (max-width: @phone) {
+    display: none;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    display: block;
+  }
+  @media only screen and (min-width: @tablet) {
+    display: block;
+  }
+}
+.nav-button {
+  box-sizing: border-box;
+  float: right;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  text-shadow: 0 0 2px rgba(50, 50, 50, 0.5);
+  background: transparent;
+  border: 1px solid white;
+  &:hover {
     color: @main-color;
     border: 1px solid @main-color;
-    background: transparent;
-    border-radius: 3px;
+    background-color: white;
+  }
+  @media only screen and (max-width: @phone) {
     padding: 2px 3px;
+    border-radius: 2px;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    padding: 3px 5px;
+    border-radius: 3px;
+  }
+  @media only screen and (min-width: @tablet) {
     margin: 0 2px;
-    &:hover {
-        color: white;
-        background-color:@main-color;
-        border: 1px solid @main-color
-    }
+    padding: 3px 5px;
+    border-radius: 5px;
+  }
 }
-[class^="preview"] figure{
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0
+.nav-signout {
+  color: white;
+  background-color: transparent;
+}
+.posts-title {
+  padding: 10px;
+  @media only screen and (max-width: @phone) {
+    padding-left: 20px;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    padding-left: 60px;
+  }
+  @media only screen and (min-width: @tablet) {
+    padding-left: 60px;
+  }
+}
+.preview-post:first-of-type {
+  border-radius: 10px 10px 0 0;
+  padding: 0 20px 30px 20px;
+}
+.preview-post:last-of-type {
+  box-shadow: none;
+}
+.posts-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.preview-post-wrapper {
+  overflow: hidden;
+}
+.preview-post {
+  padding: 30px 20px;
+  margin: 1px auto;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0px 1px 1px -1px rgba(200, 200, 200, 1);
+  -webkit-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  @media only screen and (max-width: @phone) {
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    max-width: 90%;
+  }
+  @media only screen and (min-width: @tablet) {
+    max-width: 90%;
+  }
+}
+.preview-post:hover {
+  box-shadow: 1px 2px 3px rgba(175, 175, 175, 1);
+  transform: translate(1px, -1px);
+  border-radius: 10px;
+}
+
+.preview-post-title-link {
+  text-decoration: none;
+}
+.preview-post-title {
+  margin: 5px 0;
+}
+.preview-post-pbody {
+  margin: 0;
+}
+.preview-post-buttons-container {
+  overflow: hidden;
+  margin: 5px 0 0 0;
+}
+.preview-post-button,
+.edit-post-button {
+  box-sizing: border-box;
+  font-size: 12px;
+  text-decoration: none;
+  float: right;
+  cursor: pointer;
+  color: @main-color;
+  border: 1px solid @main-color;
+  background: transparent;
+  border-radius: 3px;
+  padding: 2px 3px;
+  margin: 0 2px;
+  &:hover {
+    color: white;
+    background-color: @main-color;
+    border: 1px solid @main-color;
+  }
+}
+[class^="preview"] figure {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 }
 
 [class$="editor-container"] {
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-    @media only screen and (max-width: @phone){
-       padding: 10px 5px;
-    }
-    @media only screen and (min-width: @phone) and (max-width: @tablet){
-        max-width: 90%;
-        padding: 0 5px 10px 5px;
-    }
-    @media only screen and (min-width: @tablet){
-        max-width: 90%;
-        margin: 30px auto;
-        padding: 0 5px 20px 5px
-    }
-}
-.text-center{
-    text-align: center
-}
-.login-button{
-    box-sizing: border-box;
-    margin: 0 auto;
-    border: 1px solid black;
-    color: black;
-    padding: 3px 5px;
-    border-radius: 3px;
-    cursor: pointer
-}
-.float-right{
-    float: right;
-}
-.window-table{
-    height: 100vh
-}
-.table-center-row{
-    color: blue;
-    text-align: center
-}
-.base-post-loading{
-    text-align: center;
-}
-.post-title{
-    text-align: center;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  @media only screen and (max-width: @phone) {
+    padding: 10px 5px;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    max-width: 90%;
+    padding: 0 5px 10px 5px;
+  }
+  @media only screen and (min-width: @tablet) {
+    max-width: 90%;
     margin: 30px auto;
+    padding: 0 5px 20px 5px;
+  }
 }
-.post-body{
-    text-align: center;
-    margin: 0 auto;
+.text-center {
+  text-align: center;
 }
-.post-content-container{
-    overflow: scroll;
-    box-sizing: border-box;
-    @media only screen and (max-width: @phone){
-        padding: 30px
-     }
-     @media only screen and (min-width: @phone) and (max-width: @tablet){
-         padding: 40px
-     }
-     @media only screen and (min-width: @tablet){
-         padding: 50px
-     }
+.login-button {
+  box-sizing: border-box;
+  margin: 0 auto;
+  border: 1px solid black;
+  color: black;
+  padding: 3px 5px;
+  border-radius: 3px;
+  cursor: pointer;
 }
-.post-show{
-    margin: 0 auto;
-    max-width: 1000px;
-    @media only screen and (max-width: @phone){
-        width: 100%;
-     }
-     @media only screen and (min-width: @phone) and (max-width: @tablet){
-        width: 65%;
-     }
-     @media only screen and (min-width: @tablet){
-        width: 65%;
-     }
+.float-right {
+  float: right;
 }
-.loading-spinner-fullscreen{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.window-table {
+  height: 100vh;
+}
+.table-center-row {
+  color: blue;
+  text-align: center;
+}
+.base-post-loading {
+  text-align: center;
+}
+.post-title {
+  text-align: center;
+  margin: 30px auto;
+}
+.post-body {
+  text-align: center;
+  margin: 0 auto;
+}
+.post-content-container {
+  overflow: scroll;
+  box-sizing: border-box;
+  @media only screen and (max-width: @phone) {
+    padding: 30px;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    padding: 40px;
+  }
+  @media only screen and (min-width: @tablet) {
+    padding: 50px;
+  }
+}
+.post-show {
+  margin: 0 auto;
+  max-width: 1000px;
+  @media only screen and (max-width: @phone) {
+    width: 100%;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    width: 65%;
+  }
+  @media only screen and (min-width: @tablet) {
+    width: 65%;
+  }
+}
+.loading-spinner-fullscreen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .lds-dual-ring {
-    display: inline-block;
-    width: 64px;
-    height: 64px;
-  }
-  .lds-dual-ring:after {
-    content: " ";
-    display: block;
-    width: 46px;
-    height: 46px;
-    margin: 1px;
-    border-radius: 50%;
-    border: 5px solid #000;
-    border-color: #000 transparent #000 transparent;
-    -webkit-animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
-	-moz-animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
-	-ms-animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
-	-o-animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
-	animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
-  }
-  @keyframes lds-dual-ring {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes rainbow{
-    100%,0%{
-        border: rgb(255,0,0);
-    }
-    8%{
-        border: rgb(255,127,0);
-    }
-    16%{
-        border: rgb(255,255,0);
-    }
-    25%{
-        border: rgb(127,255,0);
-    }
-    33%{
-        border: rgb(0,255,0);
-    }
-    41%{
-        border: rgb(0,255,127);
-    }
-    50%{
-        border: rgb(0,255,255);
-    }
-    58%{
-        border: rgb(0,127,255);
-    }
-    66%{
-        border: rgb(0,0,255);
-    }
-    75%{
-        border: rgb(127,0,255);
-    }
-    83%{
-        border: rgb(255,0,255);
-    }
-    91%{
-        border: rgb(255,0,127);
-    }
+  display: inline-block;
+  width: 64px;
+  height: 64px;
 }
-  .profile-picture{
-
-    @media only screen and (max-width: @phone){
-        width: 200px;
-        height: 200px;
-     }
-     @media only screen and (min-width: @phone) and (max-width: @tablet){
-        width: 300px;
-        height: 300px;
-     }
-     @media only screen and (min-width: @tablet){
-        width: 400px;
-        height: 400px;
-     }
-     text-align: center;
-      margin: 20px auto;
-      border-radius: 50%;
-      box-shadow: 4px 4px 5px rgba(50,50,50,1);
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #000;
+  border-color: #000 transparent #000 transparent;
+  -webkit-animation: rainbow 1s infinite alternate,
+    lds-dual-ring 1s infinite alternate;
+  -moz-animation: rainbow 1s infinite alternate,
+    lds-dual-ring 1s infinite alternate;
+  -ms-animation: rainbow 1s infinite alternate,
+    lds-dual-ring 1s infinite alternate;
+  -o-animation: rainbow 1s infinite alternate,
+    lds-dual-ring 1s infinite alternate;
+  animation: rainbow 1s infinite alternate, lds-dual-ring 1s infinite alternate;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rainbow {
+  100%,
+  0% {
+    border: rgb(255, 0, 0);
+  }
+  8% {
+    border: rgb(255, 127, 0);
+  }
+  16% {
+    border: rgb(255, 255, 0);
+  }
+  25% {
+    border: rgb(127, 255, 0);
+  }
+  33% {
+    border: rgb(0, 255, 0);
+  }
+  41% {
+    border: rgb(0, 255, 127);
+  }
+  50% {
+    border: rgb(0, 255, 255);
+  }
+  58% {
+    border: rgb(0, 127, 255);
+  }
+  66% {
+    border: rgb(0, 0, 255);
+  }
+  75% {
+    border: rgb(127, 0, 255);
+  }
+  83% {
+    border: rgb(255, 0, 255);
+  }
+  91% {
+    border: rgb(255, 0, 127);
+  }
+}
+.profile-picture {
+  @media only screen and (max-width: @phone) {
+    width: 200px;
+    height: 200px;
+  }
+  @media only screen and (min-width: @phone) and (max-width: @tablet) {
+    width: 300px;
+    height: 300px;
+  }
+  @media only screen and (min-width: @tablet) {
+    width: 400px;
+    height: 400px;
+  }
+  text-align: center;
+  margin: 20px auto;
+  border-radius: 50%;
+  box-shadow: 4px 4px 5px rgba(50, 50, 50, 1);
+}

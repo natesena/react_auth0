@@ -36,6 +36,8 @@ function Sidebar(props) {
           Home
         </Link>
         {isAuthenticated &&
+          user &&
+          user["http://www.nateapp.comroles"] &&
           user["http://www.nateapp.comroles"].includes("admin") && (
             <div>
               <Link
